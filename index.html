@@ -18,7 +18,6 @@
             background-color: #000;
         }
 
-        /* 9:16 Full Screen Background Slider */
         .bg-slider {
             position: absolute;
             top: 0;
@@ -41,16 +40,16 @@
             transition: opacity 1s ease-in-out, filter 1s ease-in-out;
         }
 
-        /* Blur Transition Effect */
-        .bg-img.blur-effect {
-            filter: blur(5px);
-        }
-
         .bg-img.active {
             opacity: 1;
+            z-index: 1;
         }
 
-        /* Dark Overlay for Text Readability */
+        .bg-img.blur-effect {
+            filter: blur(8px);
+            opacity: 0;
+        }
+
         .overlay {
             position: absolute;
             top: 0;
@@ -61,7 +60,6 @@
             z-index: 2;
         }
 
-        /* Main Container */
         .container {
             position: relative;
             z-index: 3;
@@ -77,7 +75,6 @@
             margin: 0 auto;
         }
 
-        /* Logo Style */
         .logo-box {
             margin-bottom: 15px;
         }
@@ -88,7 +85,6 @@
             object-fit: contain;
         }
 
-        /* Powered By Text */
         .powered-by {
             font-size: 13px;
             color: #bbb;
@@ -97,7 +93,6 @@
             text-transform: uppercase;
         }
 
-        /* Content Box */
         .content-box {
             width: 100%;
             min-height: 250px;
@@ -107,7 +102,6 @@
             align-items: center;
         }
 
-        /* Text Steps Styling */
         .text-step {
             display: none;
             opacity: 0;
@@ -140,7 +134,6 @@
             font-weight: bold;
         }
 
-        /* Next Button Style */
         .btn-next {
             background: linear-gradient(45deg, #ff3366, #ff5e62);
             color: white;
@@ -160,7 +153,6 @@
             box-shadow: 0 6px 20px rgba(255, 51, 102, 0.6);
         }
 
-        /* Action/CPA Button Link (Hidden by default) */
         .btn-link-container {
             display: none;
             margin-top: 25px;
@@ -179,10 +171,9 @@
             text-decoration: none;
             box-shadow: 0 4px 15px rgba(252, 0, 255, 0.4);
             transition: transform 0.2s ease;
-            animation: pulseEffect 1.5s infinite; /* বাটনের প্রভাব/পালস অ্যানিমেশন */
+            animation: pulseEffect 1.5s infinite;
         }
 
-        /* বাটন প্রভাব বা পালসিং অ্যানিমেশন কিফ্রেম */
         @keyframes pulseEffect {
             0% {
                 transform: scale(1);
@@ -199,7 +190,7 @@
         }
 
         .btn-cpa:hover {
-            animation: none; /* হোভার করলে অ্যানিমেশন থামবে এবং বড় দেখাবে */
+            animation: none;
             transform: scale(1.08);
             box-shadow: 0 6px 22px rgba(252, 0, 255, 0.7);
         }
@@ -250,41 +241,42 @@
     </div>
 
     <script>
-        // Background Image Slider Logic (Changes every 3 seconds with blur)
         const images = document.querySelectorAll('.bg-img');
         let currentIndex = 0;
 
-        setInterval(() => {
-            let nextIndex = (currentIndex + 1) % images.length;
-            
-            images[currentIndex].classList.add('blur-effect');
-            
+        function changeImage() {
             setTimeout(() => {
+                images[currentIndex].classList.add('blur-effect');
+            }, 2000); 
+
+            setTimeout(() => {
+                let nextIndex = (currentIndex + 1) % images.length;
+                
                 images[currentIndex].classList.remove('active', 'blur-effect');
                 images[nextIndex].classList.add('active');
+                
                 currentIndex = nextIndex;
-            }, 800); 
+                
+                changeImage();
+            }, 3000);
+        }
 
-        }, 3000); 
+        changeImage();
 
-
-        // Navigation Flow Customization Function
         function showNextStep() {
             const step1 = document.getElementById('step1');
             const step2 = document.getElementById('step2');
             const nextBtn = document.getElementById('nextBtn');
             const cpaBtnContainer = document.getElementById('cpaBtnContainer');
 
-            // Hide the first step
             step1.classList.remove('active');
             
             setTimeout(() => {
                 step1.style.display = 'none';
                 step2.style.display = 'block';
-                nextBtn.style.display = 'none'; // Hide the 'Next' button
-                cpaBtnContainer.style.display = 'block'; // Display the CPA wrapper
+                nextBtn.style.display = 'none';
+                cpaBtnContainer.style.display = 'block';
                 
-                // Show the second step and CPA button smoothly
                 setTimeout(() => {
                     step2.classList.add('active');
                 }, 50);
