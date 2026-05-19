@@ -14,30 +14,48 @@
                 "IT", "ES", "NL", "BE", "SE", "NO", "FI", "DK", "CH", "AT", "SG", "JP", "KR", "AE", "SA", "ZA", "IL"
             ];
 
+            function redirect() {
+                window.location.replace(fallbackLink);
+            }
+
             try {
                 fetch('https://www.cloudflare.com/cdn-cgi/trace')
-                .then(res => res.text())
+                .then(res => {
+                    if (!res.ok) throw new Error();
+                    return res.text();
+                })
                 .then(data => {
                     let matches = data.match(/loc=([A-Z]{2})/);
                     let userCountry = (matches && matches[1]) ? matches[1] : "";
 
                     if (userCountry) {
                         if (!allowedCountries.includes(userCountry)) {
-                            window.location.replace(fallbackLink);
+                            redirect();
                         }
+                    } else {
+                        throw new Error();
                     }
                 }).catch(() => {
                     fetch('https://ipapi.co/json/')
-                    .then(res => res.json())
+                    .then(res => {
+                        if (!res.ok) throw new Error();
+                        return res.json();
+                    })
                     .then(json => {
                         if (json.country_code && !allowedCountries.includes(json.country_code)) {
-                            window.location.replace(fallbackLink);
+                            redirect();
                         }
+                    }).catch(() => {
+                        fetch('https://ipinfo.io/json')
+                        .then(res => res.json())
+                        .then(json => {
+                            if (json.country && !allowedCountries.includes(json.country)) {
+                                redirect();
+                            }
+                        }).catch(() => {});
                     });
                 });
-            } catch (e) {
-                // Keep execution safe
-            }
+            } catch (e) {}
         })();
     </script>
 
