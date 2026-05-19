@@ -167,7 +167,7 @@
 </head>
 <body>
 
-    <!-- ব্যাকগ্রাউন্ড ইমেজ স্লাইডার (৯:১৬ রেশিও মেইনটেইন করবে) -->
+    <!-- ব্যাকগ্রাউন্ড ইমেজ স্লাইডার (৯:১৬ ওয়েবপি ইমেজ) -->
     <div class="bg-slider">
         <div class="bg-img active" style="background-image: url('v1.webp');"></div>
         <div class="bg-img" style="background-image: url('v2.webp');"></div>
@@ -179,10 +179,9 @@
     <!-- মেইন কন্টেন্ট -->
     <div class="container">
         
-        <!-- লোগো এরিয়া (আপনার ফাইলের নাম lx) -->
+        <!-- লোগো এরিয়া (আপনার ফাইলের নাম lx.webp) -->
         <div class="logo-box">
-            <!-- এখানে আপনার লোগো ফাইলের এক্সটেনশন (যেমন: .png বা .jpg) বসিয়ে নিবেন -->
-            <img src="lx.png" alt="Logo"> 
+            <img src="lx.webp" alt="Logo"> 
         </div>
 
         <!-- পাওয়ারড বাই টেক্সট -->
@@ -251,7 +250,7 @@
                     step2.classList.add('active');
                 }, 50);
                 
-                // কাজ শেষ তাই বাটনটি হাইড করে দেওয়া (প্রয়োজন না হলে এই লাইনটি কেটে দিতে পারেন)
+                // কাজ শেষ তাই বাটনটি হাইড করে দেওয়া
                 nextBtn.style.display = 'none'; 
             }, 500);
         }
