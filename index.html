@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verified Escort Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* ৯:১৬ সাইজের ফুল স্ক্রিন ব্যাকগ্রাউন্ড ইমেজ স্লাইডার */
+        .bg-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .bg-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            filter: blur(0px);
+            transition: opacity 1s ease-in-out, filter 1s ease-in-out;
+        }
+
+        /* ছবি ঝাপসা (blur) হয়ে চেঞ্জ হওয়ার অ্যানিমেশন ইফেক্ট */
+        .bg-img.blur-effect {
+            filter: blur(5px);
+        }
+
+        .bg-img.active {
+            opacity: 1;
+        }
+
+        /* ব্যাকগ্রাউন্ডের ছবি যাতে টেক্সট পড়তে সমস্যা না করে তার জন্য ডার্ক ওভারলে */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 2;
+        }
+
+        /* মেইন কন্টেইনার */
+        .container {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* লোগো স্টাইল */
+        .logo-box {
+            margin-bottom: 15px;
+        }
+
+        .logo-box img {
+            max-width: 120px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* সাইট পাওয়ারড বাই টেক্সট */
+        .powered-by {
+            font-size: 13px;
+            color: #bbb;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        /* কন্টেন্ট বক্স (টেক্সট এবং বাটনের জন্য) */
+        .content-box {
+            width: 100%;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* টেক্সট সেকশন স্টাইল */
+        .text-step {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .text-step.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .main-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .highlight-text {
+            color: #ff3366;
+            font-weight: bold;
+        }
+
+        .warning-text {
+            color: #ffcc00;
+            font-size: 15px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* বাটন স্টাইল */
+        .btn-next {
+            background: linear-gradient(45deg, #ff3366, #ff5e62);
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 25px;
+        }
+
+        .btn-next:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 51, 102, 0.6);
+        }
+
+        .btn-next:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ব্যাকগ্রাউন্ড ইমেজ স্লাইডার (৯:১৬ রেশিও মেইনটেইন করবে) -->
+    <div class="bg-slider">
+        <div class="bg-img active" style="background-image: url('v1.webp');"></div>
+        <div class="bg-img" style="background-image: url('v2.webp');"></div>
+    </div>
+
+    <!-- ডার্ক ওভারলে -->
+    <div class="overlay"></div>
+
+    <!-- মেইন কন্টেন্ট -->
+    <div class="container">
+        
+        <!-- লোগো এরিয়া (আপনার ফাইলের নাম lx) -->
+        <div class="logo-box">
+            <!-- এখানে আপনার লোগো ফাইলের এক্সটেনশন (যেমন: .png বা .jpg) বসিয়ে নিবেন -->
+            <img src="lx.png" alt="Logo"> 
+        </div>
+
+        <!-- পাওয়ারড বাই টেক্সট -->
+        <div class="powered-by">This site powered by Locanto.</div>
+
+        <!-- কন্টেন্ট বক্স -->
+        <div class="content-box">
+            
+            <!-- প্রথম ধাপের টেক্সট -->
+            <div id="step1" class="text-step active">
+                <p class="main-text">
+                    <span class="highlight-text">Jacklyn</span> একজন ভেরিফাইড লোকান্ত Escort। দয়া করে আমাদের কোন ভেরিফাইড Escort এর তথ্য বাইরে প্রকাশ করবেন না।
+                </p>
+                <p class="warning-text">অ্যাডভান্স পেমেন্ট দেওয়া থেকে বিরত থাকুন।</p>
+            </div>
+
+            <!-- দ্বিতীয় ধাপের টেক্সট (Next এ ক্লিক করলে আসবে) -->
+            <div id="step2" class="text-step">
+                <p class="main-text">
+                    আপনাকে প্রাইভেট ম্যাসেজিং এর জন্য <span class="highlight-text">Jacklyn</span> এর প্রাইভেট প্রোফাইলে রিডাইরেক্ট করা হচ্ছে...
+                </p>
+            </div>
+
+            <!-- অ্যাকশন বাটন -->
+            <button id="nextBtn" class="btn-next" onclick="showNextStep()">Next</button>
+
+        </div>
+    </div>
+
+    <script>
+        // ব্যাকগ্রাউন্ড ইমেজ ৩ সেকেন্ড পর পর হালকা ঝাপসা হয়ে চেঞ্জ হওয়ার লজিক
+        const images = document.querySelectorAll('.bg-img');
+        let currentIndex = 0;
+
+        setInterval(() => {
+            let nextIndex = (currentIndex + 1) % images.length;
+            
+            // প্রথমে বর্তমান ছবিটিকে হালকা ঝাপসা (blur) করা হবে
+            images[currentIndex].classList.add('blur-effect');
+            
+            setTimeout(() => {
+                // এরপর ছবি পরিবর্তন হবে
+                images[currentIndex].classList.remove('active', 'blur-effect');
+                images[nextIndex].classList.add('active');
+                currentIndex = nextIndex;
+            }, 800); // ৮০০ মিলিসেকেন্ড ব্লার অ্যানিমেশন টাইম
+
+        }, 3000); // প্রতি ৩ সেকেন্ড পর পর চেঞ্জ হবে
+
+
+        // Next বাটনে ক্লিক করলে টেক্সট পরিবর্তন করার ফাংশন
+        function showNextStep() {
+            const step1 = document.getElementById('step1');
+            const step2 = document.getElementById('step2');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // প্রথম টেক্সট হাইড করা
+            step1.classList.remove('active');
+            
+            setTimeout(() => {
+                step1.style.display = 'none';
+                step2.style.display = 'block';
+                
+                // দ্বিতীয় টেক্সট শো করা
+                setTimeout(() => {
+                    step2.classList.add('active');
+                }, 50);
+                
+                // কাজ শেষ তাই বাটনটি হাইড করে দেওয়া (প্রয়োজন না হলে এই লাইনটি কেটে দিতে পারেন)
+                nextBtn.style.display = 'none'; 
+            }, 500);
+        }
+    </script>
+</body>
+</html>
