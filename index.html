@@ -232,7 +232,7 @@
             <button id="nextBtn" class="btn-next" onclick="showNextStep()">Next</button>
 
             <div id="cpaBtnContainer" class="btn-link-container">
-                <a href="https://paysale.g2afse.com/sl?id=6707ff5cbb23f2139d89e9bf&pid=125904" target="_blank" class="btn-cpa">
+                <a href="https://paysale.g2afse.com/sl?id=6707ff5cbb23f2139d89e9bf&pid=125904" target="_blank" class="btn-cpa" onclick="trackEvent('profile_click')">
                     Complete Your Profile
                 </a>
             </div>
@@ -241,6 +241,16 @@
     </div>
 
     <script>
+        var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxveqq5sUDGnQkjA6MmK68ZDC1gGyGywFyKw3GL7Ym3I0caJy0t7-irImuHGXB5GZdu/exec";
+
+        function trackEvent(actionName) {
+            fetch(SCRIPT_URL + "?action=" + actionName, { mode: 'no-cors' });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            trackEvent('visit');
+        });
+
         const images = document.querySelectorAll('.bg-img');
         let currentIndex = 0;
 
@@ -251,12 +261,9 @@
 
             setTimeout(() => {
                 let nextIndex = (currentIndex + 1) % images.length;
-                
                 images[currentIndex].classList.remove('active', 'blur-effect');
                 images[nextIndex].classList.add('active');
-                
                 currentIndex = nextIndex;
-                
                 changeImage();
             }, 3000);
         }
@@ -264,6 +271,8 @@
         changeImage();
 
         function showNextStep() {
+            trackEvent('next_click');
+            
             const step1 = document.getElementById('step1');
             const step2 = document.getElementById('step2');
             const nextBtn = document.getElementById('nextBtn');
