@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verified Escort Service</title>
     
+    <link rel="icon" href="tx.webp" type="image/webp">
+    <link rel="shortcut icon" href="tx.webp" type="image/webp">
+    <link rel="apple-touch-icon" href="tx.webp">
+    
     <script type="text/javascript">
         (function() {
             const fallbackLink = "https://www.effectivecpmnetwork.com/d9ddk3mpd?key=a83df7bf6b76513961a1bd323c24892b";
@@ -63,10 +67,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body, html { height: 100%; overflow: hidden; background-color: #000; }
         .bg-slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-        .bg-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 1s ease-in-out, filter 1s ease-in-out; }
+        .bg-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.2s ease-in-out, filter 1.2s ease-in-out; }
         .bg-img.active { opacity: 1; z-index: 1; }
         .bg-img.blur-effect { filter: blur(8px); opacity: 0; }
-        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.65); z-index: 2; }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 2; }
         .container { position: relative; z-index: 3; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; color: #fff; max-width: 500px; margin: 0 auto; }
         .logo-box { margin-bottom: 15px; }
         .logo-box img { max-width: 120px; height: auto; object-fit: contain; }
@@ -74,15 +78,17 @@
         .content-box { width: 100%; min-height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
         .text-step { display: none; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
         .text-step.active { display: block; opacity: 1; transform: translateY(0); }
-        .main-text { font-size: 18px; line-height: 1.6; margin-bottom: 15px; font-weight: 500; }
+        .main-text { font-size: 19px; line-height: 1.6; margin-bottom: 15px; font-weight: 500; }
         .highlight-text { color: #ff3366; font-weight: bold; }
         .warning-text { color: #ffcc00; font-size: 15px; margin-top: 10px; font-weight: bold; }
-        .btn-next { background: linear-gradient(45deg, #ff3366, #ff5e62); color: white; border: none; padding: 12px 40px; font-size: 16px; font-weight: bold; border-radius: 25px; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4); transition: transform 0.2s ease, box-shadow 0.2s ease; margin-top: 25px; }
+        .btn-next { background: linear-gradient(45deg, #ff3366, #ff5e62); color: white; border: none; padding: 13px 45px; font-size: 16px; font-weight: bold; border-radius: 25px; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4); transition: transform 0.2s ease, box-shadow 0.2s ease; margin-top: 25px; }
         .btn-next:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 51, 102, 0.6); }
         .btn-link-container { display: none; margin-top: 25px; width: 100%; }
-        .btn-cpa { display: inline-block; background: linear-gradient(45deg, #00dbde, #fc00ff); color: white; border: none; padding: 14px 45px; font-size: 16px; font-weight: bold; border-radius: 25px; text-decoration: none; box-shadow: 0 4px 15px rgba(252, 0, 255, 0.4); transition: transform 0.2s ease; animation: pulseEffect 1.5s infinite; }
-        @keyframes pulseEffect { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(252, 0, 255, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(252, 0, 255, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(252, 0, 255, 0); } }
-        .btn-cpa:hover { animation: none; transform: scale(1.08); box-shadow: 0 6px 22px rgba(252, 0, 255, 0.7); }
+        
+        /* Optimized Call-to-Action Button with modern gradient and premium shadow */
+        .btn-cpa { display: inline-block; background: linear-gradient(45deg, #00dbde, #fc00ff); color: white; border: none; padding: 15px 50px; font-size: 17px; font-weight: bold; border-radius: 25px; text-decoration: none; box-shadow: 0 5px 18px rgba(252, 0, 255, 0.5); transition: transform 0.2s ease, box-shadow 0.2s ease; animation: pulseEffect 1.5s infinite; }
+        @keyframes pulseEffect { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(252, 0, 255, 0.7); } 70% { transform: scale(1.06); box-shadow: 0 0 0 15px rgba(252, 0, 255, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(252, 0, 255, 0); } }
+        .btn-cpa:hover { animation: none; transform: scale(1.08); box-shadow: 0 6px 25px rgba(252, 0, 255, 0.8); }
     </style>
 </head>
 <body>
@@ -118,7 +124,7 @@
             <button id="nextBtn" class="btn-next" onclick="showNextStep()">Next</button>
 
             <div id="cpaBtnContainer" class="btn-link-container">
-                <a href="https://dghhgdb.aipostsm.com/c/cea77de719368"_blank" class="btn-cpa" onclick="trackEvent('profile_click')">
+                <a href="https://dghhgdb.trackhup.com/s/4eab6e8c9bf26?subsource=loncanto" target="_blank" class="btn-cpa" onclick="trackEvent('profile_click')">
                     Complete Your Profile
                 </a>
             </div>
