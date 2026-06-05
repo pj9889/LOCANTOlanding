@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +42,7 @@
         }
 
         .bg-slide.active {
-            opacity: 0.4; /* ছবি পরিষ্কার দেখার সুবিধার্থে অপাসিটি ০.৪ রাখা হয়েছে */
+            opacity: 0.4;
         }
 
         /* মূল কন্টেইনার */
@@ -132,14 +132,14 @@
             transform: scale(0.98);
         }
 
-        /* বিভিন্ন কালারের বাটন সেট */
+        /* বাটন কালার সেট */
         .btn-yes-1 { background-color: #28a745; color: white; }
         .btn-no-1 { background-color: #dc3545; color: white; }
         
         .btn-yes-2 { background-color: #007bff; color: white; }
         .btn-no-2 { background-color: #ffc107; color: #000; }
 
-        /* কাঁপানো বাটন ইফেক্ট (Find Someone Near Me) */
+        /* কাঁপানো বাটন ইফেক্ট */
         .btn-shake {
             background: linear-gradient(135deg, #ff3366, #ff5e62);
             color: white;
@@ -192,7 +192,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* দ্বিতীয় পেজের সম্পূর্ণ আলাদা লেআউট */
+        /* দ্বিতীয় পেজের লেআউট */
         #finalPage {
             display: none;
             position: relative;
@@ -214,7 +214,7 @@
             padding-right: 5px;
         }
 
-        /* প্রোফাইল কার্ড এলিমেন্ট */
+        /* প্রোফাইল এলিমেন্ট */
         .profile-container {
             position: relative;
             width: 130px;
@@ -264,7 +264,7 @@
             line-height: 1.6;
         }
 
-        /* অ্যাফিলিয়েট পালসিং বাটন */
+        /* পালসিং অ্যাকশন বাটন */
         .btn-cpa {
             display: block;
             background: linear-gradient(135deg, #00dbde, #fc00ff);
@@ -287,7 +287,7 @@
 </head>
 <body>
 
-    <!-- অনবরত ১ সেকেন্ড পর পর পরিবর্তন হওয়া ৫টি ছবির স্লাইডার ব্যাকগ্রাউন্ড -->
+    <!-- অনবরত পরিবর্তন হওয়া ৫টি ছবির স্লাইডার ব্যাকগ্রাউন্ড -->
     <div class="bg-slider" id="mainSlider">
         <div class="bg-slide active" style="background-image: url('v1.webp');"></div>
         <div class="bg-slide" style="background-image: url('v2.webp');"></div>
@@ -299,9 +299,9 @@
     <!-- প্রথম স্ক্রিনের কন্টেন্ট উইন্ডো -->
     <div class="wrapper" id="pageWrapper">
         <div class="card">
-            <!-- প্রথম লোগো প্লেসমেন্ট -->
+            <!-- প্রথম লোগো (PNG ফরম্যাট) -->
             <div class="logo-box">
-                <img src="lgd1.webp" alt="Locanto Logo">
+                <img src="lgd1.png" alt="Locanto Logo">
             </div>
 
             <!-- ধাপ ১ -->
@@ -337,7 +337,7 @@
         </div>
     </div>
 
-    <!-- ফেক বাফারিং এবং আলাদা লোগো স্ক্রিন -->
+    <!-- ফেক বাফারিং স্ক্রিন (আপনার রিকোয়েস্ট অনুযায়ী এটি WEBP করা হয়েছে) -->
     <div id="bufferingScreen">
         <img src="gg1.webp" alt="Verification Logo" style="max-height: 50px; object-fit: contain;">
         <div class="spinner"></div>
@@ -346,13 +346,13 @@
     <!-- সম্পূর্ণ আলাদা ব্যাকগ্রাউন্ড বিশিষ্ট দ্বিতীয় ফাইনাল পেজ -->
     <div id="finalPage">
         <div class="card" style="background: rgba(20, 15, 30, 0.95); border-color: rgba(252, 0, 255, 0.2);">
-            <!-- দ্বিতীয় লোগো রিপ্লেসমেন্ট ঠিক একই জায়গায় -->
+            <!-- দ্বিতীয় লোগো (PNG ফরম্যাট) -->
             <div class="logo-box" style="margin-bottom: 5px;">
-                <img src="sf1.webp" alt="Secure Logo">
+                <img src="sf1.png" alt="Secure Logo">
             </div>
             <div class="powered-tag">Powered by Locanto</div>
 
-            <!-- ম্যাটচিং ফলাফল বিবরণ -->
+            <!-- ম্যাচিং ফলাফল বিবরণ -->
             <p class="text-title" style="color: #00dbde; font-weight: bold; font-size: 16px;">
                 A single woman has been found near your location! She has requested private encounters and satisfaction.
             </p>
@@ -369,7 +369,7 @@
 
             <div class="profile-details">
                 Age: 37 <br>
-                Mobile: +6146827**** <!-- শেষ ৪ ডিজিট ঝাপসা/লুকানো -->
+                Mobile: +6146827****
             </div>
 
             <p class="text-title" style="font-size: 15px; margin-bottom: 25px;">
@@ -412,7 +412,7 @@
             setTimeout(() => {
                 document.getElementById('bufferingScreen').style.display = 'none';
                 document.getElementById('finalPage').style.display = 'flex';
-            }, 2000); // ২ সেকেন্ড কাউন্টডাউন
+            }, 2000);
         }
     </script>
 </body>
