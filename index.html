@@ -211,14 +211,14 @@
             background-color: #ffffff;
             overflow-y: auto;
             flex-direction: column;
-            justify-content: flex-start; /* উপর থেকে শুরু করার জন্য */
+            justify-content: flex-start;
             align-items: center;
-            padding: 10px 20px 20px 20px; /* টপ প্যাডিং কমিয়ে উপরে তোলা হয়েছে */
+            padding: 10px 20px 20px 20px;
         }
 
-        /* দ্বিতীয় পেজের লোগো কন্টেইনার (আরও উপরে তোলা হয়েছে) */
+        /* দ্বিতীয় পেজের লোগো কন্টেইনার */
         .final-logo-box {
-            margin-top: 5px; /* একদম টপে সেট করার জন্য মার্জিন সর্বনিম্ন করা হয়েছে */
+            margin-top: 5px;
             margin-bottom: 3px;
             width: 100%;
             display: flex;
@@ -239,7 +239,7 @@
             text-align: right;
             width: 100%;
             max-width: 360px;
-            margin: 0 auto 15px auto; /* গ্যাপ কমানো হয়েছে */
+            margin: 0 auto 15px auto;
             padding-right: 5px;
             font-weight: bold;
         }
@@ -280,12 +280,16 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
         }
 
+        /* রিয়েল ফেসবুক/টুইটার স্টাইল ব্লু ভেরিফাইড ব্যাজ (SVG দিয়ে নিখুঁতভাবে তৈরি) */
         .verified-badge {
-            color: #1d9bf0;
-            font-size: 18px;
+            display: inline-flex;
+            align-items: center;
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
         }
 
         .profile-details {
@@ -381,14 +385,14 @@
     <!-- সম্পূর্ণ সাদা ব্যাকগ্রাউন্ড বিশিষ্ট দ্বিতীয় ফাইনাল পেজ -->
     <div id="finalPage">
         
-        <!-- দ্বিতীয় লোগো রিপ্লেসমেন্ট (একদম ওপরে ফিক্সড) -->
+        <!-- দ্বিতীয় লোগো রিপ্লেসমেন্ট -->
         <div class="final-logo-box">
             <img src="sf1.png" alt="Secure Logo">
         </div>
         <!-- লোগোর নিচে ডান পাশে ছোট করে পাওয়ার্ড বাই টেক্সট -->
         <div class="powered-tag">Powered by Locanto</div>
 
-        <!-- মূল প্রোফাইল বক্স (লোগোর সাথে সামঞ্জস্য রেখে আরও ওপরে তোলা হয়েছে) -->
+        <!-- মূল প্রোফাইল বক্স -->
         <div class="card" style="background: rgba(15, 15, 25, 0.98); border-color: rgba(0, 219, 222, 0.2); width: 100%; margin-top: 0;">
             
             <!-- ম্যাচিং ফলাফল বিবরণ -->
@@ -402,8 +406,15 @@
                 <div class="active-dot"></div>
             </div>
 
+            <!-- প্রোফাইল নাম ও রিয়েল ভেরিফাইড সিম্বল -->
             <div class="profile-name">
-                Alyssa Watson <span class="verified-badge">✓</span>
+                Alyssa Watson 
+                <span class="verified-badge">
+                    <!-- রিয়েল ফেসবুক/টুইটার স্টাইল ব্লু ব্যাজ SVG কোড -->
+                    <svg viewBox="0 0 24 24" fill="#1d9bf0" width="100%" height="100%">
+                        <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.99-3.818-3.99-.48 0-.94.1-1.348.27C14.825 2.515 13.512 1.66 12 1.66c-1.512 0-2.825.855-3.422 2.12-.408-.17-.867-.27-1.348-.27-2.108 0-3.818 1.78-3.818 3.99 0 .495.084.965.238 1.4-1.273.65-2.148 2.02-2.148 3.6 0 1.58.875 2.95 2.148 3.6-.154.435-.238.905-.238 1.4 0 2.21 1.71 3.99 3.818 3.99.48 0 .94-.1 1.348-.27.597 1.265 1.91 2.12 3.422 2.12 1.512 0 2.825-.855 3.422-2.12.408.17.867.27 1.348.27 2.108 0 3.818-1.78 3.818-3.99 0-.495-.084-.965-.238-1.4 1.273-.65 2.148-2.02 2.148-3.6zm-12.614 3.91l-3.31-3.3 1.414-1.414 1.896 1.895 5.257-5.257 1.414 1.414-6.67 6.664z"/>
+                    </svg>
+                </span>
             </div>
 
             <div class="profile-details">
@@ -422,7 +433,7 @@
         </div>
     </div>
 
-    <!-- সর্বশেষ বাটন ক্লিকের জন্য ১ সেকেন্ডের নতুন বাফারিং স্ক্রিন (২য় লোগো + পাওয়ার্ড বাই সম্বলিত) -->
+    <!-- সর্বশেষ বাটন ক্লিকের জন্য ১ সেকেন্ডের নতুন বাফারিং স্ক্রিন -->
     <div id="finalBufferingScreen" style="background: #ffffff; color: #000;">
         <div class="final-logo-box" style="margin-bottom: 0;">
             <img src="sf1.png" alt="Secure Logo">
@@ -467,18 +478,15 @@
 
         // ৪. সর্বশেষ বাটন ক্লিক লজিক (১ সেকেন্ড বাফারিং + ২য় লোগো প্রদর্শন + লিংক ওপেন)
         function triggerFinalLinkBuffering() {
-            // ফাইনাল পেজ হাইড করে নতুন বাফারিং স্ক্রিন শো করা
             document.getElementById('finalPage').style.display = 'none';
             document.getElementById('finalBufferingScreen').style.display = 'flex';
 
             setTimeout(() => {
-                // ১ সেকেন্ড পর আপনার অ্যাফিলিয়েট লিংক ওপেন হবে
                 window.open("https://paysale.g2afse.com/click?pid=125904&offer_id=10417&sub1=Locantox1", "_blank");
                 
-                // লিংক ওপেন হওয়ার পর পেজটি আবার প্রোফাইল স্ক্রিনে ব্যাক করবে যাতে ইউজার চাইলে আবার দেখতে পারে
                 document.getElementById('finalBufferingScreen').style.display = 'none';
                 document.getElementById('finalPage').style.display = 'flex';
-            }, 1000); // ১ সেকেন্ড কাউন্টডাউন
+            }, 1000);
         }
     </script>
 </body>
