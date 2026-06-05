@@ -65,7 +65,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 30px; /* বক্স থেকে লোগোর গ্যাপ */
+            margin-bottom: 30px;
         }
 
         .top-logo-box img {
@@ -75,7 +75,7 @@
             object-fit: contain;
         }
 
-        /* টেক্সট কন্টেন্ট বক্স (৭০% ব্যাকগ্রাউন্ড ছবি দেখা যাওয়ার জন্য অপাসিটি ০.৩ করা হয়েছে) */
+        /* টেক্সট কন্টেন্ট বক্স (৭০% ব্যাকগ্রাউন্ড ভিজিবিলিটি) */
         .card {
             background: rgba(15, 15, 25, 0.3); 
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -115,10 +115,10 @@
             text-shadow: 0 2px 8px rgba(0,0,0,0.9);
         }
 
-        /* বাটন ইন্টারফেস (No বামে এবং Yes ডানে করার জন্য রিভার্স ফ্লেক্স ব্যবহার করা হয়েছে) */
+        /* বাটন ইন্টারফেস (No বামে এবং Yes ডানে) */
         .btn-group {
             display: flex;
-            flex-direction: row-reverse; /* No বাটন বামে এবং Yes বাটন ডানে নেওয়ার জন্য */
+            flex-direction: row-reverse;
             gap: 15px;
             justify-content: center;
             margin-top: 25px;
@@ -169,7 +169,7 @@
         }
 
         /* বাফারিং স্ক্রিন */
-        #bufferingScreen {
+        #bufferingScreen, #finalBufferingScreen {
             display: none;
             position: fixed;
             top: 0;
@@ -211,15 +211,15 @@
             background-color: #ffffff;
             overflow-y: auto;
             flex-direction: column;
-            justify-content: flex-start; /* কন্টেন্ট একদম উপর থেকে শুরু করার জন্য */
+            justify-content: flex-start; /* উপর থেকে শুরু করার জন্য */
             align-items: center;
-            padding: 20px;
+            padding: 10px 20px 20px 20px; /* টপ প্যাডিং কমিয়ে উপরে তোলা হয়েছে */
         }
 
-        /* দ্বিতীয় পেজের লোগো কন্টেইনার (একদম টপ পজিশনে রাখার জন্য) */
+        /* দ্বিতীয় পেজের লোগো কন্টেইনার (আরও উপরে তোলা হয়েছে) */
         .final-logo-box {
-            margin-top: 10px;
-            margin-bottom: 5px;
+            margin-top: 5px; /* একদম টপে সেট করার জন্য মার্জিন সর্বনিম্ন করা হয়েছে */
+            margin-bottom: 3px;
             width: 100%;
             display: flex;
             justify-content: center;
@@ -228,7 +228,7 @@
 
         .final-logo-box img {
             width: 100%;
-            max-width: 360px; /* লোগোটি আগের চেয়ে আরও চওড়া ও বড় করা হয়েছে */
+            max-width: 360px;
             height: auto;
             object-fit: contain;
         }
@@ -239,7 +239,7 @@
             text-align: right;
             width: 100%;
             max-width: 360px;
-            margin: 0 auto 25px auto;
+            margin: 0 auto 15px auto; /* গ্যাপ কমানো হয়েছে */
             padding-right: 5px;
             font-weight: bold;
         }
@@ -247,9 +247,9 @@
         /* প্রোফাইল এলিমেন্ট */
         .profile-container {
             position: relative;
-            width: 130px;
-            height: 130px;
-            margin: 20px auto;
+            width: 125px;
+            height: 125px;
+            margin: 15px auto;
         }
 
         .profile-pic {
@@ -265,8 +265,8 @@
             position: absolute;
             top: 6px;
             right: 6px;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             background-color: #23d160;
             border: 3px solid #0f0f13;
             border-radius: 50%;
@@ -291,7 +291,7 @@
         .profile-details {
             font-size: 15px;
             color: #cbd5e1;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             line-height: 1.6;
         }
 
@@ -308,6 +308,8 @@
             text-transform: uppercase;
             box-shadow: 0 0 20px rgba(0, 219, 222, 0.5);
             animation: pulseGlow 1.5s infinite alternate;
+            cursor: pointer;
+            text-align: center;
         }
 
         @keyframes pulseGlow {
@@ -330,7 +332,7 @@
     <!-- প্রথম স্ক্রিনের কন্টেন্ট উইন্ডো -->
     <div class="wrapper" id="pageWrapper">
         
-        <!-- প্রথম লোগো - এখন বক্সের বাইরে একদম টপে ফিক্সড -->
+        <!-- প্রথম লোগো -->
         <div class="top-logo-box">
             <img src="lgd1.png" alt="Locanto Logo">
         </div>
@@ -365,12 +367,12 @@
                 <p class="text-title">
                     You will be connected to a single woman near your location very soon. She might be someone you already know. Please do not leak our verified users' profiles or information. They wish to enjoy intimacy with full privacy.
                 </p>
-                <button class="btn-shake" onclick="triggerBuffering()">FIND SOMEONE NEAR ME</button>
+                <button class="btn-shake" onclick="triggerFirstBuffering()">FIND SOMEONE NEAR ME</button>
             </div>
         </div>
     </div>
 
-    <!-- ফেক বাফারিং স্ক্রিন -->
+    <!-- প্রথম ফেক বাফারিং স্ক্রিন (২ সেকেন্ড) -->
     <div id="bufferingScreen">
         <img src="gg1.webp" alt="Verification Logo" style="max-height: 50px; object-fit: contain;">
         <div class="spinner"></div>
@@ -386,17 +388,16 @@
         <!-- লোগোর নিচে ডান পাশে ছোট করে পাওয়ার্ড বাই টেক্সট -->
         <div class="powered-tag">Powered by Locanto</div>
 
-        <!-- মূল প্রোফাইল বক্স (লোগোর নিচে সঠিক পজিশনে ওপরে উঠে এসেছে) -->
-        <div class="card" style="background: rgba(15, 15, 25, 0.98); border-color: rgba(0, 219, 222, 0.2); width: 100%;">
+        <!-- মূল প্রোফাইল বক্স (লোগোর সাথে সামঞ্জস্য রেখে আরও ওপরে তোলা হয়েছে) -->
+        <div class="card" style="background: rgba(15, 15, 25, 0.98); border-color: rgba(0, 219, 222, 0.2); width: 100%; margin-top: 0;">
             
             <!-- ম্যাচিং ফলাফল বিবরণ -->
-            <p class="text-title" style="color: #00dbde; font-weight: bold; font-size: 16px;">
+            <p class="text-title" style="color: #00dbde; font-weight: bold; font-size: 16px; margin-bottom: 10px;">
                 A single woman has been found near your location! She has requested private encounters and satisfaction.
             </p>
 
             <!-- প্রোফাইল কার্ড এরিয়া -->
             <div class="profile-container">
-                <!-- আপনার দেওয়া নতুন ফাইল নাম fgk.webp এখানে বসানো হয়েছে -->
                 <img src="fgk.webp" alt="Alyssa Watson" class="profile-pic" onerror="this.onerror=null; this.src='fgk.webp';">
                 <div class="active-dot"></div>
             </div>
@@ -410,16 +411,24 @@
                 Mobile: +6146827****
             </div>
 
-            <p class="text-title" style="font-size: 15px; margin-bottom: 25px;">
+            <p class="text-title" style="font-size: 15px; margin-bottom: 20px;">
                 Complete your free profile validation to start private live chatting instantly with Alyssa Watson.
             </p>
 
-            <!-- অ্যাফিলিয়েট লিংক -->
-            <a href="https://paysale.g2afse.com/click?pid=125904&offer_id=10417&sub1=Locantox1" class="btn-cpa">
+            <!-- বাটন ক্লিকে নতুন বাফারিং ট্রিপ ট্রিগার হবে -->
+            <div class="btn-cpa" onclick="triggerFinalLinkBuffering()">
                 Complete Your Profile
-            </a>
+            </div>
         </div>
+    </div>
 
+    <!-- সর্বশেষ বাটন ক্লিকের জন্য ১ সেকেন্ডের নতুন বাফারিং স্ক্রিন (২য় লোগো + পাওয়ার্ড বাই সম্বলিত) -->
+    <div id="finalBufferingScreen" style="background: #ffffff; color: #000;">
+        <div class="final-logo-box" style="margin-bottom: 0;">
+            <img src="sf1.png" alt="Secure Logo">
+        </div>
+        <div class="powered-tag" style="text-align: center; margin-bottom: 30px;">Powered by Locanto</div>
+        <div class="spinner" style="border-left-color: #fc00ff; border-top-color: rgba(0,0,0,0.1);"></div>
     </div>
 
     <script>
@@ -436,7 +445,7 @@
         }
         setInterval(changeBackground, 1000);
 
-        // ২. বাটন ইন্টারঅ্যাকশন ফাংশন
+        // ২. প্রথম পেজের বাটন ইন্টারঅ্যাকশন ফাংশন
         function nextStep(stepNumber) {
             document.querySelectorAll('.step-content').forEach(step => {
                 step.classList.remove('active');
@@ -444,8 +453,8 @@
             document.getElementById('step' + stepNumber).classList.add('active');
         }
 
-        // ৩. ফেক বাফারিং এবং পেজ রিপ্লেসমেন্ট লজিক (২ সেকেন্ড বাফারিং)
-        function triggerBuffering() {
+        // ৩. প্রথম ফেক বাফারিং লজিক (২ সেকেন্ড বাফারিং)
+        function triggerFirstBuffering() {
             document.getElementById('pageWrapper').style.display = 'none';
             document.getElementById('mainSlider').style.display = 'none';
             document.getElementById('bufferingScreen').style.display = 'flex';
@@ -454,6 +463,22 @@
                 document.getElementById('bufferingScreen').style.display = 'none';
                 document.getElementById('finalPage').style.display = 'flex';
             }, 2000);
+        }
+
+        // ৪. সর্বশেষ বাটন ক্লিক লজিক (১ সেকেন্ড বাফারিং + ২য় লোগো প্রদর্শন + লিংক ওপেন)
+        function triggerFinalLinkBuffering() {
+            // ফাইনাল পেজ হাইড করে নতুন বাফারিং স্ক্রিন শো করা
+            document.getElementById('finalPage').style.display = 'none';
+            document.getElementById('finalBufferingScreen').style.display = 'flex';
+
+            setTimeout(() => {
+                // ১ সেকেন্ড পর আপনার অ্যাফিলিয়েট লিংক ওপেন হবে
+                window.open("https://paysale.g2afse.com/click?pid=125904&offer_id=10417&sub1=Locantox1", "_blank");
+                
+                // লিংক ওপেন হওয়ার পর পেজটি আবার প্রোফাইল স্ক্রিনে ব্যাক করবে যাতে ইউজার চাইলে আবার দেখতে পারে
+                document.getElementById('finalBufferingScreen').style.display = 'none';
+                document.getElementById('finalPage').style.display = 'flex';
+            }, 1000); // ১ সেকেন্ড কাউন্টডাউন
         }
     </script>
 </body>
