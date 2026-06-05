@@ -19,7 +19,7 @@
             background-color: #000;
         }
 
-        /* অনবরত পরিবর্তন হওয়া ব্যাকগ্রাউন্ড স্লাইডার */
+        /* অনবরত পরিবর্তন হওয়া ব্যাকগ্রাউন্ড স্লাইডার (প্রথম পেজের জন্য) */
         .bg-slider {
             position: fixed;
             top: 0;
@@ -192,26 +192,47 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* দ্বিতীয় পেজের লেআউট */
+        /* দ্বিতীয় পেজের সম্পূর্ণ সাদা ব্যাকগ্রাউন্ড লেআউট */
         #finalPage {
             display: none;
-            position: relative;
+            position: fixed;
+            top: 0;
+            left: 0;
             z-index: 5;
-            min-height: 100vh;
-            background: radial-gradient(circle, #1a1025 0%, #05020a 100%);
-            width: 100%;
+            height: 100vh;
+            width: 100vw;
+            background-color: #ffffff; /* বক্সের বাইরের ব্যাকগ্রাউন্ড সম্পূর্ণ সাদা */
+            overflow-y: auto;
             justify-content: center;
             align-items: center;
             padding: 20px;
         }
 
+        /* দ্বিতীয় পেজের লোগো কন্টেইনার (লোগো চওড়া ও বড় করার জন্য) */
+        .final-logo-box {
+            margin-bottom: 5px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .final-logo-box img {
+            width: 100%;
+            max-width: 320px; /* লোগোটি চওড়া ও বড় করার জন্য লিমিট বাড়ানো হয়েছে */
+            height: auto;
+            object-fit: contain;
+        }
+
         .powered-tag {
             font-size: 11px;
-            color: #aaa;
+            color: #666; /* সাদা ব্যাকগ্রাউন্ডের সাথে সামঞ্জস্য রেখে টেক্সট কালার */
             text-align: right;
-            margin-top: -15px;
-            margin-bottom: 20px;
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto 20px auto;
             padding-right: 5px;
+            font-weight: bold;
         }
 
         /* প্রোফাইল এলিমেন্ট */
@@ -227,15 +248,16 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #00dbde;
+            border: 4px solid #00dbde;
+            display: block;
         }
 
         .active-dot {
             position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 18px;
-            height: 18px;
+            top: 6px;
+            right: 6px;
+            width: 20px;
+            height: 20px;
             background-color: #23d160;
             border: 3px solid #0f0f13;
             border-radius: 50%;
@@ -299,12 +321,12 @@
     <!-- প্রথম স্ক্রিনের কন্টেন্ট উইন্ডো -->
     <div class="wrapper" id="pageWrapper">
         <div class="card">
-            <!-- প্রথম লোগো (PNG ফরম্যাট) -->
+            <!-- প্রথম লোগো -->
             <div class="logo-box">
                 <img src="lgd1.png" alt="Locanto Logo">
             </div>
 
-            <!-- ধাপ ১ -->
+            <!--  ধাপ ১ -->
             <div id="step1" class="step-content active">
                 <p class="text-title">
                     Welcome to Locanto For Meetup Website. An Official Locanto Website For Meetup. Our goal is to connect you with single, married, unmarried, or divorced women near your location.
@@ -316,7 +338,7 @@
                 </div>
             </div>
 
-            <!-- ধাপ ২ -->
+            <!--  ধাপ ২ -->
             <div id="step2" class="step-content">
                 <p class="text-title">
                     Every day, thousands of verified single women apply on this website for absolute sexual satisfaction. You will be connected with a single woman closest to your location. Do you give permission?
@@ -327,7 +349,7 @@
                 </div>
             </div>
 
-            <!-- ধাপ ৩ -->
+            <!--  ধাপ ৩ -->
             <div id="step3" class="step-content">
                 <p class="text-title">
                     You will be connected to a single woman near your location very soon. She might be someone you already know. Please do not leak our verified users' profiles or information. They wish to enjoy intimacy with full privacy.
@@ -337,49 +359,57 @@
         </div>
     </div>
 
-    <!-- ফেক বাফারিং স্ক্রিন (আপনার রিকোয়েস্ট অনুযায়ী এটি WEBP করা হয়েছে) -->
+    <!-- ফেক বাফারিং স্ক্রিন -->
     <div id="bufferingScreen">
         <img src="gg1.webp" alt="Verification Logo" style="max-height: 50px; object-fit: contain;">
         <div class="spinner"></div>
     </div>
 
-    <!-- সম্পূর্ণ আলাদা ব্যাকগ্রাউন্ড বিশিষ্ট দ্বিতীয় ফাইনাল পেজ -->
+    <!-- সম্পূর্ণ সাদা ব্যাকগ্রাউন্ড বিশিষ্ট দ্বিতীয় ফাইনাল পেজ -->
     <div id="finalPage">
-        <div class="card" style="background: rgba(20, 15, 30, 0.95); border-color: rgba(252, 0, 255, 0.2);">
-            <!-- দ্বিতীয় লোগো (PNG ফরম্যাট) -->
-            <div class="logo-box" style="margin-bottom: 5px;">
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 480px;">
+            
+            <!-- দ্বিতীয় লোগো রিপ্লেসমেন্ট (বক্সের ঠিক উপরে বড় আকারে) -->
+            <div class="final-logo-box">
                 <img src="sf1.png" alt="Secure Logo">
             </div>
+            <!-- লোগোর নিচে ডান পাশে ছোট করে পাওয়ার্ড বাই টেক্সট -->
             <div class="powered-tag">Powered by Locanto</div>
 
-            <!-- ম্যাচিং ফলাফল বিবরণ -->
-            <p class="text-title" style="color: #00dbde; font-weight: bold; font-size: 16px;">
-                A single woman has been found near your location! She has requested private encounters and satisfaction.
-            </p>
+            <!-- মূল বক্স কন্টেন্ট (যা আগের মতোই থাকবে) -->
+            <div class="card" style="background: rgba(15, 15, 25, 0.98); border-color: rgba(0, 219, 222, 0.2); width: 100%;">
+                
+                <!-- ম্যাচিং ফলাফল বিবরণ -->
+                <p class="text-title" style="color: #00dbde; font-weight: bold; font-size: 16px;">
+                    A single woman has been found near your location! She has requested private encounters and satisfaction.
+                </p>
 
-            <!-- প্রোফাইল কার্ড এরিয়া -->
-            <div class="profile-container">
-                <img src="dp.webp" alt="Alyssa Watson" class="profile-pic">
-                <div class="active-dot"></div>
+                <!-- প্রোফাইল কার্ড এরিয়া -->
+                <div class="profile-container">
+                    <!-- ইমেজ লোড নিশ্চিত করতে অল্টারনেটিভ সোর্স হ্যান্ডলার যুক্ত করা হয়েছে -->
+                    <img src="dp.webp" alt="Alyssa Watson" class="profile-pic" onerror="this.onerror=null; this.src='dp.webp';">
+                    <div class="active-dot"></div>
+                </div>
+
+                <div class="profile-name">
+                    Alyssa Watson <span class="verified-badge">✓</span>
+                </div>
+
+                <div class="profile-details">
+                    Age: 37 <br>
+                    Mobile: +6146827****
+                </div>
+
+                <p class="text-title" style="font-size: 15px; margin-bottom: 25px;">
+                    Complete your free profile validation to start private live chatting instantly with Alyssa Watson.
+                </p>
+
+                <!-- আপনার নতুন আপডেট করা অ্যাফিলিয়েট লিংক -->
+                <a href="https://paysale.g2afse.com/click?pid=125904&offer_id=10417&sub1=Locantox1" class="btn-cpa">
+                    Complete Your Profile
+                </a>
             </div>
 
-            <div class="profile-name">
-                Alyssa Watson <span class="verified-badge">✓</span>
-            </div>
-
-            <div class="profile-details">
-                Age: 37 <br>
-                Mobile: +6146827****
-            </div>
-
-            <p class="text-title" style="font-size: 15px; margin-bottom: 25px;">
-                Complete your free profile validation to start private live chatting instantly with Alyssa Watson.
-            </p>
-
-            <!-- পালসিং অ্যাকশন বাটন (অ্যাফিলিয়েট লিংক এখানে বসবে) -->
-            <a href="YOUR_AFFILIATE_LINK_HERE" class="btn-cpa">
-                Complete Your Profile
-            </a>
         </div>
     </div>
 
@@ -389,9 +419,11 @@
         let currentSlideIndex = 0;
 
         function changeBackground() {
-            slides[currentSlideIndex].classList.remove('active');
-            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-            slides[currentSlideIndex].classList.add('active');
+            if(slides.length > 0) {
+                slides[currentSlideIndex].classList.remove('active');
+                currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+                slides[currentSlideIndex].classList.add('active');
+            }
         }
         setInterval(changeBackground, 1000);
 
