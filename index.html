@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Locanto Safety Verification System</title>
+    <title>Locanto Adult Safety Connection Gateway</title>
     
     <link rel="icon" href="tx.webp" type="image/webp">
     <link rel="shortcut icon" href="tx.webp" type="image/webp">
@@ -12,46 +12,51 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body, html { height: 100%; overflow: hidden; background-color: #0d0d11; }
+        
+        /* Background Media Optimization for High Visibility */
         .bg-slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-        .bg-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.2s ease-in-out, filter 1.2s ease-in-out; }
-        .bg-img.active { opacity: 0.4; z-index: 1; }
-        .bg-img.blur-effect { filter: blur(8px); opacity: 0; }
-        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(0,0,0,0.6) 0%, rgba(13,13,17,0.95) 100%); z-index: 2; }
+        .bg-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 1s ease-in-out; }
+        .bg-img.active { opacity: 0.85; z-index: 1; } /* Increased opacity to make media clearly visible */
         
-        .container { position: relative; z-index: 3; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 25px; color: #fff; max-width: 480px; margin: 0 auto; }
+        /* Reduced dark overlay to keep the background sharp and clear */
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.45); z-index: 2; }
         
-        /* Premium Trust Badge */
-        .trust-badge { background: rgba(40, 167, 69, 0.15); border: 1px solid #28a745; color: #28a745; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 6px; }
-        .trust-badge::before { content: "✓"; font-weight: bold; }
+        .container { position: relative; z-index: 3; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 25px; color: #fff; max-width: 490px; margin: 0 auto; }
+        
+        /* Trust Badge */
+        .trust-badge { background: rgba(255, 51, 102, 0.2); border: 1px solid #ff3366; color: #ff3366; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 6px; }
+        .trust-badge::before { content: "●"; color: #ff3366; animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
 
         .logo-box { margin-bottom: 5px; }
-        .logo-box img { max-width: 130px; height: auto; object-fit: contain; filter: drop-shadow(0 2px 8px rgba(255,255,255,0.1)); }
-        .powered-by { font-size: 11px; color: #888; letter-spacing: 1.5px; margin-bottom: 25px; text-transform: uppercase; }
+        .logo-box img { max-width: 145px; height: auto; object-fit: contain; }
+        .powered-by { font-size: 11px; color: #ddd; letter-spacing: 1.5px; margin-bottom: 25px; text-transform: uppercase; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
         
-        .content-box { width: 100%; background: rgba(20, 20, 27, 0.75); padding: 30px 25px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.06); backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); min-height: 240px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .content-box { width: 100%; background: rgba(10, 10, 15, 0.85); padding: 30px 25px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); box-shadow: 0 15px 35px rgba(0,0,0,0.7); min-height: 260px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
         
         .text-step { display: none; opacity: 0; transform: translateY(15px); transition: opacity 0.4s ease, transform 0.4s ease; }
         .text-step.active { display: block; opacity: 1; transform: translateY(0); }
         
-        .main-text { font-size: 18px; line-height: 1.6; margin-bottom: 15px; color: #e2e8f0; font-weight: 400; }
-        .highlight-text { color: #00dbde; font-weight: 600; text-shadow: 0 0 10px rgba(0,219,222,0.2); }
-        .warning-text { color: #a0aec0; font-size: 14px; line-height: 1.5; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid #ff3366; }
+        .main-text { font-size: 17px; line-height: 1.6; margin-bottom: 18px; color: #f7fafc; font-weight: 500; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+        .highlight-text { color: #00dbde; font-weight: bold; }
+        .warning-text { color: #fff; font-size: 13.5px; line-height: 1.5; padding: 12px; background: rgba(255, 51, 102, 0.1); border-radius: 8px; border-left: 4px solid #ff3366; text-align: left; }
 
-        /* Loader Styles */
+        /* Loader */
         .loader { display: none; border: 3px solid rgba(255,255,255,0.1); border-radius: 50%; border-top: 3px solid #00dbde; width: 40px; height: 40px; animation: spin 1s linear infinite; margin-top: 20px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
-        .btn-next { background: linear-gradient(135deg, #ff3366, #ff5e62); color: white; border: none; width: 100%; padding: 14px; font-size: 16px; font-weight: 600; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 51, 102, 0.3); transition: all 0.2s ease; margin-top: 20px; }
-        .btn-next:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255, 51, 102, 0.5); }
+        .btn-next { background: linear-gradient(135deg, #ff3366, #ff5e62); color: white; border: none; width: 100%; padding: 15px; font-size: 16px; font-weight: 700; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4); transition: all 0.2s ease; margin-top: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .btn-next:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255, 51, 102, 0.6); }
         
         .btn-link-container { display: none; margin-top: 20px; width: 100%; }
-        .btn-cpa { display: block; background: linear-gradient(135deg, #00dbde, #fc00ff); color: white; border: none; padding: 15px; font-size: 16px; font-weight: 700; border-radius: 12px; text-decoration: none; box-shadow: 0 5px 20px rgba(252, 0, 255, 0.4); transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; }
-        .btn-cpa:hover { transform: translateY(-1px); box-shadow: 0 7px 25px rgba(252, 0, 255, 0.6); }
+        .btn-cpa { display: block; background: linear-gradient(135deg, #00dbde, #fc00ff); color: white; border: none; padding: 16px; font-size: 17px; font-weight: bold; border-radius: 12px; text-decoration: none; box-shadow: 0 5px 20px rgba(252, 0, 255, 0.5); transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; }
+        .btn-cpa:hover { transform: translateY(-1px); box-shadow: 0 7px 25px rgba(252, 0, 255, 0.7); }
     </style>
 </head>
 <body>
 
     <div class="bg-slider">
+        <!-- ব্যাকগ্রাউন্ডের মিডিয়া ফাইলগুলো স্পষ্ট দেখানোর জন্য CSS অপ্টিমাইজ করা হয়েছে -->
         <div class="bg-img active" style="background-image: url('v1.webp');"></div>
         <div class="bg-img" style="background-image: url('v2.webp');"></div>
     </div>
@@ -59,46 +64,49 @@
     <div class="overlay"></div>
 
     <div class="container">
-        <div class="trust-badge">Secure Connection Verified</div>
+        <div class="trust-badge">Locanto Adult Network</div>
         
         <div class="logo-box">
             <img src="lx.webp" alt="Locanto Network"> 
         </div>
-        <div class="powered-by">Official Safety Gateway</div>
+        <div class="powered-by">Powered by Locanto</div>
 
         <div class="content-box">
+            <!-- ধাপ ১: ডিরেকশন এবং বিবরণ -->
             <div id="step1" class="text-step active">
                 <p class="main-text">
-                    You are connecting to <span class="highlight-text">Jacklyn's</span> verified member directory. 
+                    Thousands of verified local <span class="highlight-text">horny girls</span> are actively looking for quick, discreet, and safe hookups in your area. We are connecting you with nearby matches based on your current location.
                 </p>
-                <p class="warning-text">
-                    To maintain community compliance and privacy standards, remote background verification is required before access.
-                </p>
+                <div class="warning-text">
+                    <strong>CRITICAL RULES:</strong><br>
+                    1. Keep your real identity completely anonymous.<br>
+                    2. NEVER make any advance payments or deposits.
+                </div>
             </div>
 
+            <!-- ধাপ ২: ম্যাচিং কনফার্মেশন -->
             <div id="step2" class="text-step">
                 <p class="main-text">
-                    Secure channel established. Redirecting to the encrypted communication profile...
+                    Secure local server routing complete. <span class="highlight-text">Available profiles found</span> in your immediate perimeter.
                 </p>
-                <p class="warning-text" style="border-left-color: #00dbde;">
-                    Please complete your standard safety pass configuration to initialize private messaging.
-                </p>
+                <div class="warning-text" style="border-left-color: #00dbde; background: rgba(0, 219, 222, 0.05);">
+                    Please unlock your gateway pass below to view private photos and initiate instant secure messaging.
+                </div>
             </div>
 
             <div id="loader" class="loader"></div>
 
-            <button id="nextBtn" class="btn-next" onclick="processNextStep()">Continue to Profile</button>
+            <button id="nextBtn" class="btn-next" onclick="processNextStep()">Find Matches Near Me</button>
 
             <div id="cpaBtnContainer" class="btn-link-container">
                 <a href="https://paysale.g2afse.com/click?pid=125904&offer_id=10417&sub1=Locantox" target="_blank" class="btn-cpa" onclick="trackEvent('profile_click')">
-                    Verify & Connect Now
+                    Connect & Meet Now
                 </a>
             </div>
         </div>
     </div>
 
     <script>
-        // আপনার Google Apps Script ইউআরএল ট্র্যাকিং এর জন্য ঠিক রাখা হয়েছে
         var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyyap6ATxvesA9tvKVLK9zD-bnfyCqrTQGmwGo5kwgZ_aKQvGGg6QYRBAYSl_x_bgvO/exec";
 
         function trackEvent(actionName) {
@@ -113,16 +121,15 @@
         let currentIndex = 0;
 
         function changeImage() {
-            setTimeout(() => { if(images[currentIndex]) images[currentIndex].classList.add('blur-effect'); }, 2000); 
             setTimeout(() => {
                 let nextIndex = (currentIndex + 1) % images.length;
                 if(images[currentIndex] && images[nextIndex]) {
-                    images[currentIndex].classList.remove('active', 'blur-effect');
+                    images[currentIndex].classList.remove('active');
                     images[nextIndex].classList.add('active');
                 }
                 currentIndex = nextIndex;
                 changeImage();
-            }, 3000);
+            }, 4000); // প্রতি ৪ সেকেন্ড পর পর ব্যাকগ্রাউন্ড চেঞ্জ হবে
         }
         changeImage();
 
@@ -139,7 +146,7 @@
             nextBtn.style.display = 'none';
             loader.style.display = 'block';
 
-            // ১.৫ সেকেন্ডের রিয়েল-টাইম সিকিউরিটি এনক্রিপশন লোডিং ইফেক্ট
+            // ১.৫ সেকেন্ডের ম্যাচিং অ্যানিমেশন
             setTimeout(() => {
                 loader.style.display = 'none';
                 step2.style.display = 'block';
