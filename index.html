@@ -19,7 +19,7 @@
             background-color: #000;
         }
 
-        /* অনবরত পরিবর্তন হওয়া ব্যাকগ্রাউন্ড স্লাইডার (প্রথম পেজের জন্য) */
+        /* অনবরত পরিবর্তন হওয়া ব্যাকগ্রাউন্ড স্লাইডার */
         .bg-slider {
             position: fixed;
             top: 0;
@@ -45,43 +45,48 @@
             opacity: 0.4;
         }
 
-        /* মূল কন্টেইনার */
+        /* প্রথম পেজের কন্টেইনার লেআউট */
         .wrapper {
             position: relative;
             z-index: 2;
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 20px;
             background: rgba(0, 0, 0, 0.4);
         }
 
-        .card {
-            background: rgba(15, 15, 25, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
+        /* লোগো বক্স - স্ক্রিনের একদম টপে রাখার জন্য */
+        .top-logo-box {
             width: 100%;
             max-width: 480px;
-            padding: 30px 20px;
-            text-align: center;
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            backdrop-filter: blur(10px);
-        }
-
-        .logo-box {
-            margin-bottom: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-bottom: 30px; /* বক্স থেকে লোগোর গ্যাপ */
         }
 
-        .logo-box img {
+        .top-logo-box img {
             max-width: 100%;
             height: auto;
-            max-height: 60px;
+            max-height: 65px;
             object-fit: contain;
+        }
+
+        /* টেক্সট কন্টেন্ট বক্স (৭০% ব্যাকগ্রাউন্ড ছবি দেখা যাওয়ার জন্য অপাসিটি ০.৩ করা হয়েছে) */
+        .card {
+            background: rgba(15, 15, 25, 0.3); 
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 480px;
+            padding: 35px 25px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
         }
 
         /* টাইপোগ্রাফি এবং টেক্সট স্টাইল */
@@ -98,6 +103,7 @@
             line-height: 1.6;
             margin-bottom: 20px;
             color: #f1f5f9;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         .highlight-age {
@@ -106,12 +112,13 @@
             font-size: 20px;
             display: block;
             margin-top: 15px;
-            text-shadow: 0 0 10px rgba(255,51,102,0.3);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
         }
 
-        /* বাটন ইন্টারফেস */
+        /* বাটন ইন্টারফেস (No বামে এবং Yes ডানে করার জন্য রিভার্স ফ্লেক্স ব্যবহার করা হয়েছে) */
         .btn-group {
             display: flex;
+            flex-direction: row-reverse; /* No বাটন বামে এবং Yes বাটন ডানে নেওয়ার জন্য */
             gap: 15px;
             justify-content: center;
             margin-top: 25px;
@@ -125,7 +132,7 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: transform 0.2s, opacity 0.2s;
+            transition: transform 0.2s;
         }
 
         .btn:active {
@@ -201,15 +208,17 @@
             z-index: 5;
             height: 100vh;
             width: 100vw;
-            background-color: #ffffff; /* বক্সের বাইরের ব্যাকগ্রাউন্ড সম্পূর্ণ সাদা */
+            background-color: #ffffff;
             overflow-y: auto;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-start; /* কন্টেন্ট একদম উপর থেকে শুরু করার জন্য */
             align-items: center;
             padding: 20px;
         }
 
-        /* দ্বিতীয় পেজের লোগো কন্টেইনার (লোগো চওড়া ও বড় করার জন্য) */
+        /* দ্বিতীয় পেজের লোগো কন্টেইনার (একদম টপ পজিশনে রাখার জন্য) */
         .final-logo-box {
+            margin-top: 10px;
             margin-bottom: 5px;
             width: 100%;
             display: flex;
@@ -219,18 +228,18 @@
 
         .final-logo-box img {
             width: 100%;
-            max-width: 320px; /* লোগোটি চওড়া ও বড় করার জন্য লিমিট বাড়ানো হয়েছে */
+            max-width: 360px; /* লোগোটি আগের চেয়ে আরও চওড়া ও বড় করা হয়েছে */
             height: auto;
             object-fit: contain;
         }
 
         .powered-tag {
             font-size: 11px;
-            color: #666; /* সাদা ব্যাকগ্রাউন্ডের সাথে সামঞ্জস্য রেখে টেক্সট কালার */
+            color: #666;
             text-align: right;
             width: 100%;
-            max-width: 320px;
-            margin: 0 auto 20px auto;
+            max-width: 360px;
+            margin: 0 auto 25px auto;
             padding-right: 5px;
             font-weight: bold;
         }
@@ -320,12 +329,14 @@
 
     <!-- প্রথম স্ক্রিনের কন্টেন্ট উইন্ডো -->
     <div class="wrapper" id="pageWrapper">
-        <div class="card">
-            <!-- প্রথম লোগো -->
-            <div class="logo-box">
-                <img src="lgd1.png" alt="Locanto Logo">
-            </div>
+        
+        <!-- প্রথম লোগো - এখন বক্সের বাইরে একদম টপে ফিক্সড -->
+        <div class="top-logo-box">
+            <img src="lgd1.png" alt="Locanto Logo">
+        </div>
 
+        <!-- মূল টেক্সট বক্স -->
+        <div class="card">
             <!--  ধাপ ১ -->
             <div id="step1" class="step-content active">
                 <p class="text-title">
@@ -367,50 +378,48 @@
 
     <!-- সম্পূর্ণ সাদা ব্যাকগ্রাউন্ড বিশিষ্ট দ্বিতীয় ফাইনাল পেজ -->
     <div id="finalPage">
-        <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 480px;">
-            
-            <!-- দ্বিতীয় লোগো রিপ্লেসমেন্ট (বক্সের ঠিক উপরে বড় আকারে) -->
-            <div class="final-logo-box">
-                <img src="sf1.png" alt="Secure Logo">
-            </div>
-            <!-- লোগোর নিচে ডান পাশে ছোট করে পাওয়ার্ড বাই টেক্সট -->
-            <div class="powered-tag">Powered by Locanto</div>
-
-            <!-- মূল বক্স কন্টেন্ট (যা আগের মতোই থাকবে) -->
-            <div class="card" style="background: rgba(15, 15, 25, 0.98); border-color: rgba(0, 219, 222, 0.2); width: 100%;">
-                
-                <!-- ম্যাচিং ফলাফল বিবরণ -->
-                <p class="text-title" style="color: #00dbde; font-weight: bold; font-size: 16px;">
-                    A single woman has been found near your location! She has requested private encounters and satisfaction.
-                </p>
-
-                <!-- প্রোফাইল কার্ড এরিয়া -->
-                <div class="profile-container">
-                    <!-- ইমেজ লোড নিশ্চিত করতে অল্টারনেটিভ সোর্স হ্যান্ডলার যুক্ত করা হয়েছে -->
-                    <img src="dp.webp" alt="Alyssa Watson" class="profile-pic" onerror="this.onerror=null; this.src='dp.webp';">
-                    <div class="active-dot"></div>
-                </div>
-
-                <div class="profile-name">
-                    Alyssa Watson <span class="verified-badge">✓</span>
-                </div>
-
-                <div class="profile-details">
-                    Age: 37 <br>
-                    Mobile: +6146827****
-                </div>
-
-                <p class="text-title" style="font-size: 15px; margin-bottom: 25px;">
-                    Complete your free profile validation to start private live chatting instantly with Alyssa Watson.
-                </p>
-
-                <!-- আপনার নতুন আপডেট করা অ্যাফিলিয়েট লিংক -->
-                <a href="https://paysale.g2afse.com/click?pid=125904&offer_id=10417&sub1=Locantox1" class="btn-cpa">
-                    Complete Your Profile
-                </a>
-            </div>
-
+        
+        <!-- দ্বিতীয় লোগো রিপ্লেসমেন্ট (একদম ওপরে ফিক্সড) -->
+        <div class="final-logo-box">
+            <img src="sf1.png" alt="Secure Logo">
         </div>
+        <!-- লোগোর নিচে ডান পাশে ছোট করে পাওয়ার্ড বাই টেক্সট -->
+        <div class="powered-tag">Powered by Locanto</div>
+
+        <!-- মূল প্রোফাইল বক্স (লোগোর নিচে সঠিক পজিশনে ওপরে উঠে এসেছে) -->
+        <div class="card" style="background: rgba(15, 15, 25, 0.98); border-color: rgba(0, 219, 222, 0.2); width: 100%;">
+            
+            <!-- ম্যাচিং ফলাফল বিবরণ -->
+            <p class="text-title" style="color: #00dbde; font-weight: bold; font-size: 16px;">
+                A single woman has been found near your location! She has requested private encounters and satisfaction.
+            </p>
+
+            <!-- প্রোফাইল কার্ড এরিয়া -->
+            <div class="profile-container">
+                <!-- আপনার দেওয়া নতুন ফাইল নাম fgk.webp এখানে বসানো হয়েছে -->
+                <img src="fgk.webp" alt="Alyssa Watson" class="profile-pic" onerror="this.onerror=null; this.src='fgk.webp';">
+                <div class="active-dot"></div>
+            </div>
+
+            <div class="profile-name">
+                Alyssa Watson <span class="verified-badge">✓</span>
+            </div>
+
+            <div class="profile-details">
+                Age: 37 <br>
+                Mobile: +6146827****
+            </div>
+
+            <p class="text-title" style="font-size: 15px; margin-bottom: 25px;">
+                Complete your free profile validation to start private live chatting instantly with Alyssa Watson.
+            </p>
+
+            <!-- অ্যাফিলিয়েট লিংক -->
+            <a href="https://paysale.g2afse.com/click?pid=125904&offer_id=10417&sub1=Locantox1" class="btn-cpa">
+                Complete Your Profile
+            </a>
+        </div>
+
     </div>
 
     <script>
