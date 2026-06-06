@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Locanto For Meetup</title>
+    <title>Chat-Avenue For Meetup</title>
     <style>
         * {
             margin: 0;
@@ -19,7 +19,7 @@
             background-color: #000;
         }
 
-        /* অনবরত পরিবর্তন হওয়া ব্যাকগ্রাউন্ড স্লাইডার */
+        /* ব্যাকগ্রাউন্ড স্লাইডার */
         .bg-slider {
             position: fixed;
             top: 0;
@@ -45,7 +45,7 @@
             opacity: 0.4;
         }
 
-        /* প্রথম পেজের কন্টেইনার লেআউট */
+        /* প্রথম পেজের কন্টেইনার */
         .wrapper {
             position: relative;
             z-index: 2;
@@ -58,24 +58,21 @@
             background: rgba(0, 0, 0, 0.4);
         }
 
-        /* লোগো বক্স - স্ক্রিনের একদম টপে রাখার জন্য */
         .top-logo-box {
             width: 100%;
             max-width: 480px;
+            margin-bottom: 30px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 30px;
         }
 
         .top-logo-box img {
-            max-width: 100%;
+            width: 100%;
             height: auto;
-            max-height: 65px;
             object-fit: contain;
         }
 
-        /* টেক্সট কন্টেন্ট বক্স (৭০% ব্যাকগ্রাউন্ড ভিজিবিলিটি) */
         .card {
             background: rgba(15, 15, 25, 0.3); 
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -89,7 +86,6 @@
             backdrop-filter: blur(4px);
         }
 
-        /* টাইপোগ্রাফি এবং টেক্সট স্টাইল */
         .step-content {
             display: none;
         }
@@ -115,7 +111,6 @@
             text-shadow: 0 2px 8px rgba(0,0,0,0.9);
         }
 
-        /* বাটন ইন্টারফেস (No বামে এবং Yes ডানে) */
         .btn-group {
             display: flex;
             flex-direction: row-reverse;
@@ -139,14 +134,12 @@
             transform: scale(0.98);
         }
 
-        /* বাটন কালার সেট */
         .btn-yes-1 { background-color: #28a745; color: white; }
         .btn-no-1 { background-color: #dc3545; color: white; }
         
         .btn-yes-2 { background-color: #007bff; color: white; }
         .btn-no-2 { background-color: #ffc107; color: #000; }
 
-        /* কাঁপানো বাটন ইফেক্ট */
         .btn-shake {
             background: linear-gradient(135deg, #ff3366, #ff5e62);
             color: white;
@@ -168,38 +161,95 @@
             20%, 40%, 60%, 80% { transform: translateX(3px); }
         }
 
-        /* বাফারিং স্ক্রিন */
-        #bufferingScreen, #finalBufferingScreen {
+        /* আধুনিক ৩-সেকেন্ড লোকেশন রাডার এবং সার্চিং স্ক্রিন */
+        #bufferingScreen {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #09090e;
-            z-index: 10;
+            background: #060713;
+            z-index: 20;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
+            padding: 20px;
         }
 
-        .spinner {
-            border: 4px solid rgba(255,255,255,0.1);
-            width: 50px;
-            height: 50px;
+        .radar-box {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            border: 2px solid rgba(0, 219, 222, 0.3);
             border-radius: 50%;
-            border-left-color: #00dbde;
-            animation: spin 1s linear infinite;
-            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+            background: radial-gradient(circle, rgba(0,219,222,0.05) 0%, rgba(0,0,0,0) 70%);
         }
 
-        @keyframes spin {
+        .radar-box::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1px dashed rgba(252, 0, 255, 0.4);
+            border-radius: 50%;
+            animation: spinRadar 3s linear infinite;
+        }
+
+        .radar-pulse {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #00dbde;
+            border-radius: 50%;
+            opacity: 0;
+            animation: pulseRadar 1.5s linear infinite;
+        }
+
+        @keyframes spinRadar {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
-        /* দ্বিতীয় পেজের সম্পূর্ণ সাদা ব্যাকগ্রাউন্ড লেআউট */
+        @keyframes pulseRadar {
+            0% { transform: scale(0.6); opacity: 0.8; }
+            100% { transform: scale(1.3); opacity: 0; }
+        }
+
+        /* স্ক্যানিং এর সময় লাইভ ফিমেল প্রোফাইল ফ্ল্যাশিং বক্স */
+        .live-photo-scan {
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            border: 3px solid #fc00ff;
+            object-fit: cover;
+            z-index: 25;
+            box-shadow: 0 0 15px rgba(252, 0, 255, 0.6);
+        }
+
+        .scan-status {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00dbde;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .scan-details {
+            font-size: 13px;
+            color: #a1a1aa;
+            min-height: 20px;
+            text-align: center;
+            font-family: monospace;
+        }
+
+        /* ফাইনাল পেজ লেআউট */
         #finalPage {
             display: none;
             position: fixed;
@@ -216,7 +266,6 @@
             padding: 10px 20px 20px 20px;
         }
 
-        /* দ্বিতীয় পেজের লোগো কন্টেইনার */
         .final-logo-box {
             margin-top: 5px;
             margin-bottom: 3px;
@@ -283,7 +332,6 @@
             gap: 6px;
         }
 
-        /* রিয়েল ফেসবুক/টুইটার স্টাইল ব্লু ভেরিফাইড ব্যাজ (SVG দিয়ে নিখুঁতভাবে তৈরি) */
         .verified-badge {
             display: inline-flex;
             align-items: center;
@@ -299,7 +347,6 @@
             line-height: 1.6;
         }
 
-        /* পালসিং অ্যাকশন বাটন */
         .btn-cpa {
             display: block;
             background: linear-gradient(135deg, #00dbde, #fc00ff);
@@ -320,11 +367,38 @@
             0% { transform: scale(1); box-shadow: 0 0 10px rgba(0, 219, 222, 0.5); }
             100% { transform: scale(1.03); box-shadow: 0 0 25px rgba(252, 0, 255, 0.8); }
         }
+
+        #finalBufferingScreen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255,255,255,0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border-left-color: #00dbde;
+            animation: spin 1s linear infinite;
+            margin-top: 25px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
 
-    <!-- অনবরত পরিবর্তন হওয়া ৫টি ছবির স্লাইডার ব্যাকগ্রাউন্ড -->
     <div class="bg-slider" id="mainSlider">
         <div class="bg-slide active" style="background-image: url('v1.webp');"></div>
         <div class="bg-slide" style="background-image: url('v2.webp');"></div>
@@ -333,20 +407,15 @@
         <div class="bg-slide" style="background-image: url('v5.webp');"></div>
     </div>
 
-    <!-- প্রথম স্ক্রিনের কন্টেন্ট উইন্ডো -->
     <div class="wrapper" id="pageWrapper">
-        
-        <!-- প্রথম লোগো -->
         <div class="top-logo-box">
-            <img src="lgd1.png" alt="Locanto Logo">
+            <img src="logo.webp" alt="Chat-Avenue Logo">
         </div>
 
-        <!-- মূল টেক্সট বক্স -->
         <div class="card">
-            <!--  ধাপ ১ -->
             <div id="step1" class="step-content active">
                 <p class="text-title">
-                    Welcome to Locanto For Meetup Website. An Official Locanto Website For Meetup. Our goal is to connect you with single, married, unmarried, or divorced women near your location.
+                    Welcome to Chat-Avenue For Meetup Website. An Official Chat-Avenue Website For Meetup. Our goal is to connect you with single, married, unmarried, or divorced women near your location.
                 </p>
                 <span class="highlight-age">Is your age over 18+?</span>
                 <div class="btn-group">
@@ -355,7 +424,6 @@
                 </div>
             </div>
 
-            <!--  ধাপ ২ -->
             <div id="step2" class="step-content">
                 <p class="text-title">
                     Every day, thousands of verified single women apply on this website for absolute sexual satisfaction. You will be connected with a single woman closest to your location. Do you give permission?
@@ -366,7 +434,6 @@
                 </div>
             </div>
 
-            <!--  ধাপ ৩ -->
             <div id="step3" class="step-content">
                 <p class="text-title">
                     You will be connected to a single woman near your location very soon. She might be someone you already know. Please do not leak our verified users' profiles or information. They wish to enjoy intimacy with full privacy.
@@ -376,41 +443,34 @@
         </div>
     </div>
 
-    <!-- প্রথম ফেক বাফারিং স্ক্রিন (২ সেকেন্ড) -->
     <div id="bufferingScreen">
-        <img src="gg1.webp" alt="Verification Logo" style="max-height: 50px; object-fit: contain;">
-        <div class="spinner"></div>
+        <div class="radar-box">
+            <div class="radar-pulse"></div>
+            <img src="fgk.webp" id="liveScanPic" class="live-photo-scan" alt="Scanning Profiles">
+        </div>
+        <div class="scan-status" id="scanStatusText">ANALYZING GPS SIGNAL...</div>
+        <div class="scan-details" id="scanDetailsText">Initializing proximity matrix...</div>
     </div>
 
-    <!-- সম্পূর্ণ সাদা ব্যাকগ্রাউন্ড বিশিষ্ট দ্বিতীয় ফাইনাল পেজ -->
     <div id="finalPage">
-        
-        <!-- দ্বিতীয় লোগো রিপ্লেসমেন্ট -->
         <div class="final-logo-box">
             <img src="sf1.png" alt="Secure Logo">
         </div>
-        <!-- লোগোর নিচে ডান পাশে ছোট করে পাওয়ার্ড বাই টেক্সট -->
-        <div class="powered-tag">Powered by Locanto</div>
+        <div class="powered-tag">Powered by Chat-Avenue</div>
 
-        <!-- মূল প্রোফাইল বক্স -->
         <div class="card" style="background: rgba(15, 15, 25, 0.98); border-color: rgba(0, 219, 222, 0.2); width: 100%; margin-top: 0;">
-            
-            <!-- ম্যাচিং ফলাফল বিবরণ -->
             <p class="text-title" style="color: #00dbde; font-weight: bold; font-size: 16px; margin-bottom: 10px;">
                 A single woman has been found near your location! She has requested private encounters and satisfaction.
             </p>
 
-            <!-- প্রোফাইল কার্ড এরিয়া -->
             <div class="profile-container">
-                <img src="fgk.webp" alt="Alyssa Watson" class="profile-pic" onerror="this.onerror=null; this.src='fgk.webp';">
+                <img src="fgk.webp" alt="Alyssa Watson" class="profile-pic">
                 <div class="active-dot"></div>
             </div>
 
-            <!-- প্রোফাইল নাম ও রিয়েল ভেরিফাইড সিম্বল -->
             <div class="profile-name">
                 Alyssa Watson 
                 <span class="verified-badge">
-                    <!-- রিয়েল ফেসবুক/টুইটার স্টাইল ব্লু ব্যাজ SVG কোড -->
                     <svg viewBox="0 0 24 24" fill="#1d9bf0" width="100%" height="100%">
                         <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.99-3.818-3.99-.48 0-.94.1-1.348.27C14.825 2.515 13.512 1.66 12 1.66c-1.512 0-2.825.855-3.422 2.12-.408-.17-.867-.27-1.348-.27-2.108 0-3.818 1.78-3.818 3.99 0 .495.084.965.238 1.4-1.273.65-2.148 2.02-2.148 3.6 0 1.58.875 2.95 2.148 3.6-.154.435-.238.905-.238 1.4 0 2.21 1.71 3.99 3.818 3.99.48 0 .94-.1 1.348-.27.597 1.265 1.91 2.12 3.422 2.12 1.512 0 2.825-.855 3.422-2.12.408.17.867.27 1.348.27 2.108 0 3.818-1.78 3.818-3.99 0-.495-.084-.965-.238-1.4 1.273-.65 2.148-2.02 2.148-3.6zm-12.614 3.91l-3.31-3.3 1.414-1.414 1.896 1.895 5.257-5.257 1.414 1.414-6.67 6.664z"/>
                     </svg>
@@ -419,31 +479,44 @@
 
             <div class="profile-details">
                 Age: 37 <br>
-                Mobile: +6146827****
+                Mobile: <span id="userCountryCode">+61</span>46827****
             </div>
 
             <p class="text-title" style="font-size: 15px; margin-bottom: 20px;">
                 Complete your free profile validation to start private live chatting instantly with Alyssa Watson.
             </p>
 
-            <!-- বাটন ক্লিকে নতুন বাফারিং ট্রিপ ট্রিগার হবে -->
             <div class="btn-cpa" onclick="triggerFinalLinkBuffering()">
                 Complete Your Profile
             </div>
         </div>
     </div>
 
-    <!-- সর্বশেষ বাটন ক্লিকের জন্য ১ সেকেন্ডের নতুন বাফারিং স্ক্রিন -->
     <div id="finalBufferingScreen" style="background: #ffffff; color: #000;">
         <div class="final-logo-box" style="margin-bottom: 0;">
             <img src="sf1.png" alt="Secure Logo">
         </div>
-        <div class="powered-tag" style="text-align: center; margin-bottom: 30px;">Powered by Locanto</div>
+        <div class="powered-tag" style="text-align: center; margin-bottom: 30px;">Powered by Chat-Avenue</div>
         <div class="spinner" style="border-left-color: #fc00ff; border-top-color: rgba(0,0,0,0.1);"></div>
     </div>
 
     <script>
-        // ১. অনবরত ব্যাকগ্রাউন্ড ইমেজ পরিবর্তন লজিক (১ সেকেন্ড পর পর)
+        // ১. ট্রাফিকের আইপি অনুযায়ী কান্ট্রি কোড অটো-ডিটেক্ট করার ফাংশন
+        function getTrafficCountryCode() {
+            fetch('https://ipapi.co/json/')
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.country_calling_code) {
+                        document.getElementById('userCountryCode').innerText = data.country_calling_code;
+                    }
+                })
+                .catch(error => {
+                    console.log('Country code fetch failed, using default (+61)');
+                });
+        }
+        window.onload = getTrafficCountryCode;
+
+        // ব্যাকগ্রাউন্ড স্লাইডার
         const slides = document.querySelectorAll('.bg-slide');
         let currentSlideIndex = 0;
 
@@ -456,7 +529,7 @@
         }
         setInterval(changeBackground, 1000);
 
-        // ২. প্রথম পেজের বাটন ইন্টারঅ্যাকশন ফাংশন
+        // স্টেপ চেঞ্জ লজিক
         function nextStep(stepNumber) {
             document.querySelectorAll('.step-content').forEach(step => {
                 step.classList.remove('active');
@@ -464,19 +537,54 @@
             document.getElementById('step' + stepNumber).classList.add('active');
         }
 
-        // ৩. প্রথম ফেক বাফারিং লজিক (২ সেকেন্ড বাফারিং)
+        // ২. ৩-সেকেন্ডের হাই-টেক লোকেশন সার্চিং এবং ফিল্টারিং লজিক
         function triggerFirstBuffering() {
             document.getElementById('pageWrapper').style.display = 'none';
             document.getElementById('mainSlider').style.display = 'none';
             document.getElementById('bufferingScreen').style.display = 'flex';
 
+            const statusText = document.getElementById('scanStatusText');
+            const detailsText = document.getElementById('scanDetailsText');
+            const scanPic = document.getElementById('liveScanPic');
+
+            // ফিল্টারিং ইফেক্ট ফুটিয়ে তোলার জন্য ব্যাকগ্রাউন্ড স্লাইডারের ছবি ও মেয়ের ছবি র্যান্ডম ইন্টারভেলে ঘুরবে
+            let picToggle = 0;
+            const picInterval = setInterval(() => {
+                picToggle = (picToggle + 1) % 6;
+                if(picToggle === 0) scanPic.src = 'fgk.webp';
+                else scanPic.src = 'v' + picToggle + '.webp';
+            }, 150); // প্রতি ১৫০ মিলি-সেকেন্ড পর পর প্রোফাইল পিকচার ফ্ল্যাশ হবে
+
+            // ১ম সেকেন্ড: ট্রাফিক ট্র্যাকিং
             setTimeout(() => {
-                document.getElementById('bufferingScreen').style.display = 'none';
-                document.getElementById('finalPage').style.display = 'flex';
-            }, 2000);
+                statusText.innerText = "SEARCHING NEARBY TRAFFIC...";
+                detailsText.innerText = "Scanning radius 5.4km... [41 profiles found]";
+            }, 800);
+
+            // ২য় সেকেন্ড: প্রোফাইল ম্যাচিং
+            setTimeout(() => {
+                statusText.style.color = "#fc00ff";
+                statusText.innerText = "FILTERING VERIFIED FEMALE PROFILES...";
+                detailsText.innerText = "Matching intimacy criteria... Syncing database...";
+            }, 1800);
+
+            // ৩য় সেকেন্ড: সাকসেস এবং মূল ফিমেল প্রোফাইলে রিডাইরেক্ট
+            setTimeout(() => {
+                clearInterval(picInterval); // ফ্ল্যাশিং বন্ধ হবে
+                scanPic.src = 'fgk.webp'; // ফাইনাল মেয়ের ছবি ফিক্সড হবে
+                statusText.style.color = "#23d160";
+                statusText.innerText = "MATCH FOUND SUCCESSFULLY!";
+                detailsText.innerText = "Connecting secure profile terminal...";
+                
+                setTimeout(() => {
+                    document.getElementById('bufferingScreen').style.display = 'none';
+                    document.getElementById('finalPage').style.display = 'flex';
+                }, 500); // সাকসেস মেসেজ দেখার জন্য অতিরিক্ত ৫০০ms পর মেইন পেজে যাবে
+
+            }, 3000); // এক্সাক্ট ৩ সেকেন্ড লুপ
         }
 
-        // ৪. সর্বশেষ বাটন ক্লিক লজিক (১ সেকেন্ড বাফারিং + ২য় লোগো প্রদর্শন + লিংক ওপেন)
+        // ২য় বাফারিং ও লিংক ওপেন (১ সেকেন্ড)
         function triggerFinalLinkBuffering() {
             document.getElementById('finalPage').style.display = 'none';
             document.getElementById('finalBufferingScreen').style.display = 'flex';
