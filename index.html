@@ -19,7 +19,6 @@
             background-color: #000;
         }
 
-        /* অনবরত পরিবর্তন হওয়া ব্যাকগ্রাউন্ড স্লাইডার */
         .bg-slider {
             position: fixed;
             top: 0;
@@ -38,14 +37,13 @@
             background-size: cover;
             background-position: center;
             opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+            transition: opacity 0.4s ease-in-out;
         }
 
         .bg-slide.active {
             opacity: 0.4;
         }
 
-        /* প্রথম পেজের কন্টেইনার লেআউট */
         .wrapper {
             position: relative;
             z-index: 2;
@@ -58,7 +56,6 @@
             background: rgba(0, 0, 0, 0.4);
         }
 
-        /* লোগো বক্স - স্ক্রিনের একদম টপে রাখার জন্য */
         .top-logo-box {
             width: 100%;
             max-width: 480px;
@@ -75,7 +72,6 @@
             object-fit: contain;
         }
 
-        /* টেক্সট কন্টেন্ট বক্স (৭০% ব্যাকগ্রাউন্ড ভিজিবিলিটি) */
         .card {
             background: rgba(15, 15, 25, 0.3); 
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -89,7 +85,6 @@
             backdrop-filter: blur(4px);
         }
 
-        /* টাইপোগ্রাফি এবং টেক্সট স্টাইল */
         .step-content {
             display: none;
         }
@@ -115,7 +110,6 @@
             text-shadow: 0 2px 8px rgba(0,0,0,0.9);
         }
 
-        /* বাটন ইন্টারফেস (No বামে এবং Yes ডানে) */
         .btn-group {
             display: flex;
             flex-direction: row-reverse;
@@ -139,14 +133,12 @@
             transform: scale(0.98);
         }
 
-        /* বাটন কালার সেট */
         .btn-yes-1 { background-color: #28a745; color: white; }
         .btn-no-1 { background-color: #dc3545; color: white; }
         
         .btn-yes-2 { background-color: #007bff; color: white; }
         .btn-no-2 { background-color: #ffc107; color: #000; }
 
-        /* কাঁপানো বাটন ইফেক্ট */
         .btn-shake {
             background: linear-gradient(135deg, #ff3366, #ff5e62);
             color: white;
@@ -168,7 +160,6 @@
             20%, 40%, 60%, 80% { transform: translateX(3px); }
         }
 
-        /* ৩-সেকেন্ড প্রফেশনাল লোকেশন রাডার এবং সার্চিং স্ক্রিন */
         #bufferingScreen {
             display: none;
             position: fixed;
@@ -228,7 +219,6 @@
             100% { transform: scale(1.3); opacity: 0; }
         }
 
-        /* স্ক্যানিং এর সময় লাইভ ফিমেল প্রোফাইল ফ্ল্যাশিং বক্স */
         .live-photo-scan {
             width: 95px;
             height: 95px;
@@ -256,7 +246,6 @@
             font-family: monospace;
         }
 
-        /* দ্বিতীয় পেজের সম্পূর্ণ সাদা ব্যাকগ্রাউন্ড লেআউট */
         #finalPage {
             display: none;
             position: fixed;
@@ -273,7 +262,6 @@
             padding: 10px 20px 20px 20px;
         }
 
-        /* দ্বিতীয় পেজের লোগো কন্টেইনার */
         .final-logo-box {
             margin-top: 5px;
             margin-bottom: 3px;
@@ -301,7 +289,6 @@
             font-weight: bold;
         }
 
-        /* প্রোফাইল এলিমেন্ট */
         .profile-container {
             position: relative;
             width: 125px;
@@ -340,7 +327,6 @@
             gap: 6px;
         }
 
-        /* ব্লু ভেরিফাইড ব্যাজ */
         .verified-badge {
             display: inline-flex;
             align-items: center;
@@ -356,7 +342,6 @@
             line-height: 1.6;
         }
 
-        /* পালসিং অ্যাকশন বাটন */
         .btn-cpa {
             display: block;
             background: linear-gradient(135deg, #00dbde, #fc00ff);
@@ -397,7 +382,7 @@
             height: 50px;
             border-radius: 50%;
             border-left-color: #00dbde;
-            animation: spin 1s linear infinite;
+            animation: spin 0.8s linear infinite;
             margin-top: 25px;
         }
 
@@ -418,7 +403,6 @@
     </div>
 
     <div class="wrapper" id="pageWrapper">
-        
         <div class="top-logo-box">
             <img src="lgd1.png" alt="Locanto Logo">
         </div>
@@ -457,21 +441,19 @@
     <div id="bufferingScreen">
         <div class="radar-box">
             <div class="radar-pulse"></div>
-            <img src="fgk.webp" id="liveScanPic" class="live-photo-scan" alt="Scanning Profiles">
+            <img src="q1.webp" id="liveScanPic" class="live-photo-scan" alt="Scanning">
         </div>
         <div class="scan-status" id="scanStatusText">ANALYZING GPS SIGNAL...</div>
         <div class="scan-details" id="scanDetailsText">Initializing proximity matrix...</div>
     </div>
 
     <div id="finalPage">
-        
         <div class="final-logo-box">
             <img src="sf1.png" alt="Secure Logo">
         </div>
         <div class="powered-tag">Powered by Locanto</div>
 
         <div class="card" style="background: rgba(15, 15, 25, 0.98); border-color: rgba(0, 219, 222, 0.2); width: 100%; margin-top: 0;">
-            
             <p class="text-title" style="color: #00dbde; font-weight: bold; font-size: 16px; margin-bottom: 10px;">
                 A single woman has been found near your location! She has requested private encounters and satisfaction.
             </p>
@@ -514,7 +496,6 @@
     </div>
 
     <script>
-        // ১. ট্রাফিকের আইপি অনুযায়ী কান্ট্রি কোড অটো-ডিটেক্ট করার ফাংশন
         function getTrafficCountryCode() {
             fetch('https://ipapi.co/json/')
                 .then(response => response.json())
@@ -523,13 +504,10 @@
                         document.getElementById('userCountryCode').innerText = data.country_calling_code;
                     }
                 })
-                .catch(error => {
-                    console.log('Country code fetch failed, using default (+61)');
-                });
+                .catch(error => {});
         }
         window.onload = getTrafficCountryCode;
 
-        // অনবরত ব্যাকগ্রাউন্ড ইমেজ পরিবর্তন লজিক (১ সেকেন্ড পর পর)
         const slides = document.querySelectorAll('.bg-slide');
         let currentSlideIndex = 0;
 
@@ -542,7 +520,6 @@
         }
         setInterval(changeBackground, 1000);
 
-        // প্রথম পেজের বাটন ইন্টারঅ্যাকশন ফাংশন
         function nextStep(stepNumber) {
             document.querySelectorAll('.step-content').forEach(step => {
                 step.classList.remove('active');
@@ -550,7 +527,6 @@
             document.getElementById('step' + stepNumber).classList.add('active');
         }
 
-        // ২. ৩-সেকেন্ডের হাই-টেক লোকেশন সার্চিং এবং প্রোফাইল ফিল্টারিং লজিক (Locanto-র ইমেজ ফাইল অনুসারে)
         function triggerFirstBuffering() {
             document.getElementById('pageWrapper').style.display = 'none';
             document.getElementById('mainSlider').style.display = 'none';
@@ -560,31 +536,26 @@
             const detailsText = document.getElementById('scanDetailsText');
             const scanPic = document.getElementById('liveScanPic');
 
-            // ফিল্টারিং ইফেক্ট ফুটিয়ে তোলার জন্য ব্যাকগ্রাউন্ড স্লাইডারের ছবি ও মেয়ের ছবি র্যান্ডম ইন্টারভেলে ঘুরবে
-            let picToggle = 0;
+            let picNumber = 1;
             const picInterval = setInterval(() => {
-                picToggle = (picToggle + 1) % 6;
-                if(picToggle === 0) scanPic.src = 'fgk.webp';
-                else scanPic.src = 'v' + picToggle + '.webp';
-            }, 150); // প্রতি ১৫০ মিলি-সেকেন্ড পর পর প্রোফাইল পিকচার ফ্ল্যাশ হবে
+                scanPic.src = 'q' + picNumber + '.webp';
+                picNumber = (picNumber % 10) + 1;
+            }, 100);
 
-            // ১ম সেকেন্ড: ট্রাফিক ট্র্যাকিং
             setTimeout(() => {
                 statusText.innerText = "SEARCHING NEARBY TRAFFIC...";
                 detailsText.innerText = "Scanning radius 5.4km... [41 profiles found]";
             }, 800);
 
-            // ২য় সেকেন্ড: প্রোফাইল ম্যাচিং
             setTimeout(() => {
                 statusText.style.color = "#fc00ff";
                 statusText.innerText = "FILTERING VERIFIED FEMALE PROFILES...";
                 detailsText.innerText = "Matching intimacy criteria... Syncing database...";
             }, 1800);
 
-            // ৩য় সেকেন্ড: সাকসেস এবং মূল ফিমেল প্রোফাইলে রিডাইরেক্ট
             setTimeout(() => {
-                clearInterval(picInterval); // ফ্ল্যাশিং বন্ধ হবে
-                scanPic.src = 'fgk.webp'; // ফাইনাল মেয়ের ছবি ফিক্সড হবে
+                clearInterval(picInterval);
+                scanPic.src = 'fgk.webp';
                 statusText.style.color = "#23d160";
                 statusText.innerText = "MATCH FOUND SUCCESSFULLY!";
                 detailsText.innerText = "Connecting secure profile terminal...";
@@ -592,22 +563,20 @@
                 setTimeout(() => {
                     document.getElementById('bufferingScreen').style.display = 'none';
                     document.getElementById('finalPage').style.display = 'flex';
-                }, 500); // সাকসেস মেসেজ দেখার জন্য অতিরিক্ত ৫০০ms পর মেইন পেজে যাবে
+                }, 400);
 
-            }, 3000); // এক্সাক্ট ৩ সেকেন্ড লুপ
+            }, 3000);
         }
 
-        // ৪. সর্বশেষ বাটন ক্লিক লজিক (১ সেকেন্ড বাফারিং + ২য় লোগো প্রদর্শন + লিংক ওপেন)
         function triggerFinalLinkBuffering() {
             document.getElementById('finalPage').style.display = 'none';
             document.getElementById('finalBufferingScreen').style.display = 'flex';
 
             setTimeout(() => {
                 window.open("https://paysale.g2afse.com/click?pid=125904&offer_id=10417&sub1=Locantox1", "_blank");
-                
                 document.getElementById('finalBufferingScreen').style.display = 'none';
                 document.getElementById('finalPage').style.display = 'flex';
-            }, 1000);
+            }, 800);
         }
     </script>
 </body>
