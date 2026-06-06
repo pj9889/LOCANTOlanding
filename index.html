@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat-Avenue For Meetup</title>
+    <title>Locanto For Meetup</title>
     <style>
         * {
             margin: 0;
@@ -19,7 +19,7 @@
             background-color: #000;
         }
 
-        /* ব্যাকগ্রাউন্ড স্লাইডার */
+        /* অনবরত পরিবর্তন হওয়া ব্যাকগ্রাউন্ড স্লাইডার */
         .bg-slider {
             position: fixed;
             top: 0;
@@ -45,7 +45,7 @@
             opacity: 0.4;
         }
 
-        /* প্রথম পেজের কন্টেইনার */
+        /* প্রথম পেজের কন্টেইনার লেআউট */
         .wrapper {
             position: relative;
             z-index: 2;
@@ -58,21 +58,24 @@
             background: rgba(0, 0, 0, 0.4);
         }
 
+        /* লোগো বক্স - স্ক্রিনের একদম টপে রাখার জন্য */
         .top-logo-box {
             width: 100%;
             max-width: 480px;
-            margin-bottom: 30px;
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-bottom: 30px;
         }
 
         .top-logo-box img {
-            width: 100%;
+            max-width: 100%;
             height: auto;
+            max-height: 65px;
             object-fit: contain;
         }
 
+        /* টেক্সট কন্টেন্ট বক্স (৭০% ব্যাকগ্রাউন্ড ভিজিবিলিটি) */
         .card {
             background: rgba(15, 15, 25, 0.3); 
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -86,6 +89,7 @@
             backdrop-filter: blur(4px);
         }
 
+        /* টাইপোগ্রাফি এবং টেক্সট স্টাইল */
         .step-content {
             display: none;
         }
@@ -111,6 +115,7 @@
             text-shadow: 0 2px 8px rgba(0,0,0,0.9);
         }
 
+        /* বাটন ইন্টারফেস (No বামে এবং Yes ডানে) */
         .btn-group {
             display: flex;
             flex-direction: row-reverse;
@@ -134,12 +139,14 @@
             transform: scale(0.98);
         }
 
+        /* বাটন কালার সেট */
         .btn-yes-1 { background-color: #28a745; color: white; }
         .btn-no-1 { background-color: #dc3545; color: white; }
         
         .btn-yes-2 { background-color: #007bff; color: white; }
         .btn-no-2 { background-color: #ffc107; color: #000; }
 
+        /* কাঁপানো বাটন ইফেক্ট */
         .btn-shake {
             background: linear-gradient(135deg, #ff3366, #ff5e62);
             color: white;
@@ -161,7 +168,7 @@
             20%, 40%, 60%, 80% { transform: translateX(3px); }
         }
 
-        /* আধুনিক ৩-সেকেন্ড লোকেশন রাডার এবং সার্চিং স্ক্রিন */
+        /* ৩-সেকেন্ড প্রফেশনাল লোকেশন রাডার এবং সার্চিং স্ক্রিন */
         #bufferingScreen {
             display: none;
             position: fixed;
@@ -249,7 +256,7 @@
             font-family: monospace;
         }
 
-        /* ফাইনাল পেজ লেআউট */
+        /* দ্বিতীয় পেজের সম্পূর্ণ সাদা ব্যাকগ্রাউন্ড লেআউট */
         #finalPage {
             display: none;
             position: fixed;
@@ -266,6 +273,7 @@
             padding: 10px 20px 20px 20px;
         }
 
+        /* দ্বিতীয় পেজের লোগো কন্টেইনার */
         .final-logo-box {
             margin-top: 5px;
             margin-bottom: 3px;
@@ -332,6 +340,7 @@
             gap: 6px;
         }
 
+        /* ব্লু ভেরিফাইড ব্যাজ */
         .verified-badge {
             display: inline-flex;
             align-items: center;
@@ -347,6 +356,7 @@
             line-height: 1.6;
         }
 
+        /* পালসিং অ্যাকশন বাটন */
         .btn-cpa {
             display: block;
             background: linear-gradient(135deg, #00dbde, #fc00ff);
@@ -408,14 +418,15 @@
     </div>
 
     <div class="wrapper" id="pageWrapper">
+        
         <div class="top-logo-box">
-            <img src="logo.webp" alt="Chat-Avenue Logo">
+            <img src="lgd1.png" alt="Locanto Logo">
         </div>
 
         <div class="card">
             <div id="step1" class="step-content active">
                 <p class="text-title">
-                    Welcome to Chat-Avenue For Meetup Website. An Official Chat-Avenue Website For Meetup. Our goal is to connect you with single, married, unmarried, or divorced women near your location.
+                    Welcome to Locanto For Meetup Website. An Official Locanto Website For Meetup. Our goal is to connect you with single, married, unmarried, or divorced women near your location.
                 </p>
                 <span class="highlight-age">Is your age over 18+?</span>
                 <div class="btn-group">
@@ -453,12 +464,14 @@
     </div>
 
     <div id="finalPage">
+        
         <div class="final-logo-box">
             <img src="sf1.png" alt="Secure Logo">
         </div>
-        <div class="powered-tag">Powered by Chat-Avenue</div>
+        <div class="powered-tag">Powered by Locanto</div>
 
         <div class="card" style="background: rgba(15, 15, 25, 0.98); border-color: rgba(0, 219, 222, 0.2); width: 100%; margin-top: 0;">
+            
             <p class="text-title" style="color: #00dbde; font-weight: bold; font-size: 16px; margin-bottom: 10px;">
                 A single woman has been found near your location! She has requested private encounters and satisfaction.
             </p>
@@ -496,7 +509,7 @@
         <div class="final-logo-box" style="margin-bottom: 0;">
             <img src="sf1.png" alt="Secure Logo">
         </div>
-        <div class="powered-tag" style="text-align: center; margin-bottom: 30px;">Powered by Chat-Avenue</div>
+        <div class="powered-tag" style="text-align: center; margin-bottom: 30px;">Powered by Locanto</div>
         <div class="spinner" style="border-left-color: #fc00ff; border-top-color: rgba(0,0,0,0.1);"></div>
     </div>
 
@@ -516,7 +529,7 @@
         }
         window.onload = getTrafficCountryCode;
 
-        // ব্যাকগ্রাউন্ড স্লাইডার
+        // অনবরত ব্যাকগ্রাউন্ড ইমেজ পরিবর্তন লজিক (১ সেকেন্ড পর পর)
         const slides = document.querySelectorAll('.bg-slide');
         let currentSlideIndex = 0;
 
@@ -529,7 +542,7 @@
         }
         setInterval(changeBackground, 1000);
 
-        // স্টেপ চেঞ্জ লজিক
+        // প্রথম পেজের বাটন ইন্টারঅ্যাকশন ফাংশন
         function nextStep(stepNumber) {
             document.querySelectorAll('.step-content').forEach(step => {
                 step.classList.remove('active');
@@ -537,7 +550,7 @@
             document.getElementById('step' + stepNumber).classList.add('active');
         }
 
-        // ২. ৩-সেকেন্ডের হাই-টেক লোকেশন সার্চিং এবং ফিল্টারিং লজিক
+        // ২. ৩-সেকেন্ডের হাই-টেক লোকেশন সার্চিং এবং প্রোফাইল ফিল্টারিং লজিক (Locanto-র ইমেজ ফাইল অনুসারে)
         function triggerFirstBuffering() {
             document.getElementById('pageWrapper').style.display = 'none';
             document.getElementById('mainSlider').style.display = 'none';
@@ -584,7 +597,7 @@
             }, 3000); // এক্সাক্ট ৩ সেকেন্ড লুপ
         }
 
-        // ২য় বাফারিং ও লিংক ওপেন (১ সেকেন্ড)
+        // ৪. সর্বশেষ বাটন ক্লিক লজিক (১ সেকেন্ড বাফারিং + ২য় লোগো প্রদর্শন + লিংক ওপেন)
         function triggerFinalLinkBuffering() {
             document.getElementById('finalPage').style.display = 'none';
             document.getElementById('finalBufferingScreen').style.display = 'flex';
