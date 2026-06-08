@@ -303,6 +303,11 @@
             object-fit: cover;
             border: 4px solid #00dbde;
             display: block;
+            transition: filter 0.5s ease-in-out;
+        }
+
+        .profile-pic.blur-active {
+            filter: blur(5px) opacity(0.4);
         }
 
         .active-dot {
@@ -459,7 +464,7 @@
             </p>
 
             <div class="profile-container">
-                <img src="fgk.webp" alt="Alyssa Watson" class="profile-pic">
+                <img src="fgk.webp" id="targetProfilePic" alt="Alyssa Watson" class="profile-pic">
                 <div class="active-dot"></div>
             </div>
 
@@ -563,6 +568,11 @@
                 setTimeout(() => {
                     document.getElementById('bufferingScreen').style.display = 'none';
                     document.getElementById('finalPage').style.display = 'flex';
+                    
+                    setTimeout(() => {
+                        document.getElementById('targetProfilePic').classList.add('blur-active');
+                    }, 2000);
+                    
                 }, 400);
 
             }, 3000);
