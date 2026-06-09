@@ -439,8 +439,8 @@
                 </p>
                 <span class="highlight-age">Is your age over 18+?</span>
                 <div class="btn-group">
-                    <button class="btn btn-yes-1" onclick="nextStep(2)">Yes</button>
-                    <button class="btn btn-no-1" onclick="nextStep(2)">No</button>
+                    <button class="btn btn-yes-1" onclick="handleStepClick(2, 'Step 1: Yes')">Yes</button>
+                    <button class="btn btn-no-1" onclick="handleStepClick(2, 'Step 1: No')">No</button>
                 </div>
             </div>
 
@@ -449,8 +449,8 @@
                     Every day, thousands of verified single women apply on this website for absolute sexual satisfaction. You will be connected with a single woman closest to your location. Do you give permission?
                 </p>
                 <div class="btn-group">
-                    <button class="btn btn-yes-2" onclick="nextStep(3)">Yes</button>
-                    <button class="btn btn-no-2" onclick="nextStep(3)">No</button>
+                    <button class="btn btn-yes-2" onclick="handleStepClick(3, 'Step 2: Yes')">Yes</button>
+                    <button class="btn btn-no-2" onclick="handleStepClick(3, 'Step 2: No')">No</button>
                 </div>
             </div>
 
@@ -528,15 +528,39 @@
     </div>
 
     <script>
+        // আপনার দেওয়া গুগল অ্যাপস স্ক্রিপ্ট URL সরাসরি যুক্ত করা হলো
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwNwDuk2HVhlFpICHBRgi44mwihfOTjBK3TzGgSIEN4abgjujMWxV7UaW0u_eZ55ZFG/exec";
+        let currentCountryCode = "+61";
+
+        function sendTrackingData(actionName) {
+            if (!GOOGLE_SCRIPT_URL) return;
+            
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    countryCode: currentCountryCode,
+                    action: actionName
+                })
+            }).catch(err => console.log("Tracking error:", err));
+        }
+
         function getTrafficCountryCode() {
             fetch('https://ipapi.co/json/')
                 .then(response => response.json())
                 .then(data => {
                     if (data && data.country_calling_code) {
-                        document.getElementById('userCountryCode').innerText = data.country_calling_code;
+                        currentCountryCode = data.country_calling_code;
+                        document.getElementById('userCountryCode').innerText = currentCountryCode;
                     }
+                    sendTrackingData("Page Loaded");
                 })
-                .catch(error => {});
+                .catch(error => {
+                    sendTrackingData("Page Loaded (Country Fetch Failed)");
+                });
         }
         window.onload = getTrafficCountryCode;
 
@@ -559,7 +583,14 @@
             document.getElementById('step' + stepNumber).classList.add('active');
         }
 
+        function handleStepClick(nextStepNum, actionLabel) {
+            sendTrackingData(actionLabel);
+            nextStep(nextStepNum);
+        }
+
         function triggerFirstBuffering() {
+            sendTrackingData("Clicked: Find Someone Near Me");
+            
             document.getElementById('pageWrapper').style.display = 'none';
             document.getElementById('mainSlider').style.display = 'none';
             document.getElementById('bufferingScreen').style.display = 'flex';
@@ -595,6 +626,7 @@
                 setTimeout(() => {
                     document.getElementById('bufferingScreen').style.display = 'none';
                     document.getElementById('finalPage').style.display = 'flex';
+                    sendTrackingData("Match Shown (Alyssa Watson Profile)");
                     
                     setTimeout(() => {
                         document.getElementById('targetProfilePic').classList.add('blur-active');
@@ -606,6 +638,8 @@
         }
 
         function triggerFinalLinkBuffering() {
+            sendTrackingData("Clicked: Complete Your Profile (CPA Link)");
+            
             document.getElementById('finalPage').style.display = 'none';
             document.getElementById('finalBufferingScreen').style.display = 'flex';
 
