@@ -506,7 +506,7 @@
 
             <div class="profile-details">
                 Age: 37 <br>
-                Mobile: <span id="userCountryCode">+61</span>46827****
+                Mobile: 0468 277 ***
             </div>
 
             <p class="text-title" style="font-size: 15px; margin-bottom: 20px;">
@@ -528,18 +528,6 @@
     </div>
 
     <script>
-        function getTrafficCountryCode() {
-            fetch('https://ipapi.co/json/')
-                .then(response => response.json())
-                .then(data => {
-                    if (data && data.country_calling_code) {
-                        document.getElementById('userCountryCode').innerText = data.country_calling_code;
-                    }
-                })
-                .catch(error => {});
-        }
-        window.onload = getTrafficCountryCode;
-
         const slides = document.querySelectorAll('.bg-slide');
         let currentSlideIndex = 0;
 
