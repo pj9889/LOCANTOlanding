@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Locanto For Meetup</title>
+    <title>Meet Her Now</title>
     <style>
         * {
             margin: 0;
@@ -41,7 +41,7 @@
         }
 
         .bg-slide.active {
-            opacity: 0.4;
+            opacity: 0.4; /* কন্ট্রাস্ট ভালো রাখার জন্য উজ্জ্বলতা কমিয়ে রাখা হয়েছে */
         }
 
         .wrapper {
@@ -85,73 +85,26 @@
             backdrop-filter: blur(4px);
         }
 
-        .step-content {
-            display: none;
-        }
-
-        .step-content.active {
-            display: block;
-        }
-
         .text-title {
             font-size: 18px;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: #f1f5f9;
             text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        .highlight-age {
-            color: #ff3366;
-            font-weight: bold;
-            font-size: 20px;
-            display: block;
-            margin-top: 15px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
-        }
-
-        .btn-group {
-            display: flex;
-            flex-direction: row-reverse;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 25px;
-        }
-
-        .btn {
-            flex: 1;
-            padding: 14px;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .btn:active {
-            transform: scale(0.98);
-        }
-
-        .btn-yes-1 { background-color: #28a745; color: white; }
-        .btn-no-1 { background-color: #dc3545; color: white; }
-        
-        .btn-yes-2 { background-color: #007bff; color: white; }
-        .btn-no-2 { background-color: #ffc107; color: #000; }
-
-        /* GET LAID NOW বাটনের জন্য কাস্টমাইজড স্টাইল */
-        .btn-shake {
-            background: linear-gradient(135deg, #ff3366, #ff5e62);
+        .btn-shake-cta {
+            background: linear-gradient(135deg, #00dbde, #fc00ff);
             color: white;
             width: 100%;
             padding: 16px;
             font-size: 18px;
-            border-radius: 8px;
+            border-radius: 12px;
             border: none;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
+            margin-top: 10px;
+            box-shadow: 0 4px 20px rgba(0, 219, 222, 0.6);
             animation: lightShake 2s infinite, pulseGlow 1.5s infinite alternate;
             text-transform: uppercase;
         }
@@ -162,13 +115,11 @@
             20%, 40%, 60%, 80% { transform: translateX(3px); }
         }
 
-        /* বাটনের উজ্জ্বলতা বাড়ানোর জন্য পালসগ্লো */
         @keyframes pulseGlow {
-            0% { box-shadow: 0 0 10px rgba(255, 51, 102, 0.4); }
-            100% { box-shadow: 0 0 25px rgba(255, 51, 102, 0.9); }
+            0% { box-shadow: 0 0 10px rgba(0, 219, 222, 0.6); }
+            100% { box-shadow: 0 0 30px rgba(252, 0, 255, 1); }
         }
 
-        /* বাফারিং স্ক্রিনের স্টাইল */
         #bufferingScreen {
             display: none;
             position: fixed;
@@ -185,20 +136,20 @@
             padding: 20px;
         }
 
-        /* বাফারিং স্ক্রিনের লোগোর জন্য স্টাইল */
+        /* বাফারিং স্ক্রিনের লোগোর জন্য নতুন স্টাইল */
         .buffering-logo-box {
             width: 100%;
             max-width: 480px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 50px;
+            margin-top: 50px; /* লোগোকে পেজের একটু ওপরে রাখার জন্য */
             margin-bottom: 30px;
         }
 
         .buffering-logo-box img {
             max-width: 100%;
-            max-height: 60px;
+            max-height: 60px; /* লোগোর সাইজ */
             object-fit: contain;
         }
 
@@ -215,16 +166,6 @@
             background: radial-gradient(circle, rgba(0,219,222,0.05) 0%, rgba(0,0,0,0) 70%);
         }
 
-        .radar-box::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 1px dashed rgba(252, 0, 255, 0.4);
-            border-radius: 50%;
-            animation: spinRadar 3s linear infinite;
-        }
-
         .radar-pulse {
             position: absolute;
             width: 100%;
@@ -233,11 +174,6 @@
             border-radius: 50%;
             opacity: 0;
             animation: pulseRadar 1.5s linear infinite;
-        }
-
-        @keyframes spinRadar {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         @keyframes pulseRadar {
@@ -258,7 +194,7 @@
         .scan-status {
             font-size: 18px;
             font-weight: bold;
-            color: #23d160; /* ম্যাচ সাকসেস কালার */
+            color: #23d160; /* সাকসেস কালার */
             margin-bottom: 10px;
             letter-spacing: 0.5px;
             text-align: center;
@@ -271,6 +207,7 @@
             text-align: center;
             font-family: monospace;
         }
+
     </style>
 </head>
 <body>
@@ -289,33 +226,10 @@
         </div>
 
         <div class="card">
-            <div id="step1" class="step-content active">
-                <p class="text-title">
-                    Welcome to Locanto For Meetup Website. Our goal is to connect you with single, married, unmarried, or divorced women near your location.
-                </p>
-                <span class="highlight-age">Is your age over 18+?</span>
-                <div class="btn-group">
-                    <button class="btn btn-yes-1" onclick="nextStep(2)">Yes</button>
-                    <button class="btn btn-no-1" onclick="nextStep(2)">No</button>
-                </div>
-            </div>
-
-            <div id="step2" class="step-content">
-                <p class="text-title">
-                    Do you give permission to connect you with single, married, unmarried, or divorced women near your location?
-                </p>
-                <div class="btn-group">
-                    <button class="btn btn-yes-2" onclick="nextStep(3)">Yes</button>
-                    <button class="btn btn-no-2" onclick="nextStep(3)">No</button>
-                </div>
-            </div>
-
-            <div id="step3" class="step-content">
-                <p class="text-title">
-                    Every day, thousands of verified single women apply on this website for absolute sexual satisfaction. Thousands of single women apply on this website for total satisfaction. Connect with them in privacy.
-                </p>
-                <button class="btn-shake" onclick="triggerBuffering()">GET LAID NOW</button>
-            </div>
+            <p class="text-title">
+                Get connect you with single, married, unmarried, or divorced women near your location. Thousands of verified single women apply on this website for absolute sexual satisfaction.
+            </p>
+            <button class="btn-shake-cta" onclick="triggerBuffering()">GET LAID NOW</button>
         </div>
     </div>
 
@@ -343,36 +257,33 @@
                 slides[currentSlideIndex].classList.add('active');
             }
         }
-        setInterval(changeBackground, 1000);
-
-        function nextStep(stepNumber) {
-            document.querySelectorAll('.step-content').forEach(step => {
-                step.classList.remove('active');
-            });
-            document.getElementById('step' + stepNumber).classList.add('active');
-        }
+        setInterval(changeBackground, 1000); // ছবির স্লাইড চালু থাকবে
 
         function triggerBuffering() {
+            // প্রথম পেজ হাইড করবে
             document.getElementById('pageWrapper').style.display = 'none';
+            // বাফারিং স্ক্রিন ডিসপ্লে করবে
             document.getElementById('bufferingScreen').style.display = 'flex';
 
             const scanPic = document.getElementById('liveScanPic');
 
+            // স্ক্যানিং এনিমেশন
             let picNumber = 1;
             const picInterval = setInterval(() => {
                 scanPic.src = 'q' + picNumber + '.webp';
                 picNumber = (picNumber % 10) + 1;
             }, 100);
 
-            // ৩ সেকেন্ডের বাফারিং-এর পর সরাসরি এফিলিট লিংক ওপেন করবে
+            // ৩ সেকেন্ডের টাইমার - বাফারিং এর পর এফিলিট লিংক ওপেন করবে
             setTimeout(() => {
                 clearInterval(picInterval);
-                scanPic.src = 'fgk.webp'; // বাফারিং শেষ হলে যে ছবি থাকবে
+                // বাফারিং শেষ হলে যে ছবি থাকবে
+                scanPic.src = 'fgk.webp'; 
                 
                 // বাফারিং স্ক্রিন হাইড করবে
                 document.getElementById('bufferingScreen').style.display = 'none';
                 
-                // অটোমেটিকভাবে এফিলিট লিংক ওপেন করবে (ওই একই পেজে)
+                // অটোমেটিকভাবে এফিলিট লিংক ওপেন করবে
                 window.open("https://paysale.g2afse.com/click?pid=125904&offer_id=10417&sub1=Locantox1", "_self");
                 
             }, 3000); // ঠিক ৩ সেকেন্ড পর্যন্ত বাফারিং করবে
