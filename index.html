@@ -136,6 +136,23 @@
             padding: 20px;
         }
 
+        /* বাফারিং স্ক্রিনের লোগোর জন্য নতুন স্টাইল */
+        .buffering-logo-box {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px; /* লোগোকে পেজের একটু ওপরে রাখার জন্য */
+            margin-bottom: 30px;
+        }
+
+        .buffering-logo-box img {
+            max-width: 100%;
+            max-height: 60px; /* লোগোর সাইজ */
+            object-fit: contain;
+        }
+
         .radar-box {
             position: relative;
             width: 160px;
@@ -191,38 +208,6 @@
             font-family: monospace;
         }
 
-        .profile-container {
-            position: relative;
-            width: 125px;
-            height: 125px;
-            margin: 15px auto;
-        }
-
-        .profile-pic {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #fc00ff;
-            display: block;
-            filter: blur(1px) opacity(0.8); /* ব্লার এবং ওবাসিটি বাড়িয়ে রাখা হয়েছে */
-        }
-
-        #finalPage {
-            display: none; /* শুরুতে হাইড থাকবে */
-            background-color: #000; /* সেক্সটিং পার্টনার পেজ ব্যাকগ্রাউন্ড */
-        }
-        
-        .cpa-link-cover {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-            z-index: 30;
-        }
-
     </style>
 </head>
 <body>
@@ -249,6 +234,10 @@
     </div>
 
     <div id="bufferingScreen">
+        <div class="buffering-logo-box">
+            <img src="sf1.png" alt="Secured Logo">
+        </div>
+
         <div class="radar-box">
             <div class="radar-pulse"></div>
             <img src="q1.webp" id="liveScanPic" class="live-photo-scan" alt="Scanning">
@@ -268,15 +257,17 @@
                 slides[currentSlideIndex].classList.add('active');
             }
         }
-        setInterval(changeBackground, 1000); // তোমার ছবির স্লাইড চালু থাকবে
+        setInterval(changeBackground, 1000); // ছবির স্লাইড চালু থাকবে
 
         function triggerBuffering() {
+            // প্রথম পেজ হাইড করবে
             document.getElementById('pageWrapper').style.display = 'none';
+            // বাফারিং স্ক্রিন ডিসপ্লে করবে
             document.getElementById('bufferingScreen').style.display = 'flex';
 
             const scanPic = document.getElementById('liveScanPic');
 
-            // স্ক্যানিং এনিমেশন (তোমার কোড অনুযায়ী)
+            // স্ক্যানিং এনিমেশন
             let picNumber = 1;
             const picInterval = setInterval(() => {
                 scanPic.src = 'q' + picNumber + '.webp';
@@ -286,7 +277,8 @@
             // ৩ সেকেন্ডের টাইমার - বাফারিং এর পর এফিলিট লিংক ওপেন করবে
             setTimeout(() => {
                 clearInterval(picInterval);
-                scanPic.src = 'fgk.webp';
+                // বাফারিং শেষ হলে যে ছবি থাকবে
+                scanPic.src = 'fgk.webp'; 
                 
                 // বাফারিং স্ক্রিন হাইড করবে
                 document.getElementById('bufferingScreen').style.display = 'none';
